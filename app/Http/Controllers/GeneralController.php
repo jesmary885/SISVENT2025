@@ -1,0 +1,53 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class GeneralController extends Controller
+{
+    
+    public function inventario_index(){
+
+        return view('inventario.index');
+    }
+
+    public function ventas_index(){
+
+        return view('ventas.index');
+    }
+
+    public function Punto_venta(){
+
+        return view('Punto_venta.index');
+    }
+
+    public function configuracion(){
+
+        return view('configuracion.index');
+    }
+
+    public function compras_index(){
+
+        return view('compras.index');
+    }
+
+    public function proveedores(){
+
+        return view('proveedores.index');
+    }
+
+    public function cajas_index(){
+
+        return view('cajas.index');
+    }
+
+     public function administracion(){
+
+        //return view('administracion.index');
+    }
+
+
+
+
+}
