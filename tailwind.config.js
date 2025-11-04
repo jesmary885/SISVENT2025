@@ -20,7 +20,9 @@ module.exports = {
                 'Opena': ['Open Sans', 'sans-serif'],
                 'Arima': [ 'Arima', 'system-ui'],
                 'Edu': [ 'Edu AU VIC WA NT Dots', 'serif'],
-                'Allerta' : ['Allerta Stencil', 'serif']
+                'Allerta' : ['Allerta Stencil', 'serif'],
+                'inter': ['Inter', 'sans-serif'],
+                'poppins': ['Poppins', 'sans-serif'],
 
         
             },

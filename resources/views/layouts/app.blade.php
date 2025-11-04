@@ -22,6 +22,20 @@
         {{-- sweetalert2 --}}
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+           <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Arima:wght@100..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Dots:wght@400..700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap" rel="stylesheet">
+
+        <script src="https://cdn.jsdelivr.net/npm/simplycountdown.js@2.0.0/dist/simplyCountdown.min.js"></script>
+
+        <link rel="stylesheet" href="https://cdn.tailgrids.com/tailgrids-fallback.css" />
+
+    
+        <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.15.1/css/pro.min.css" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
 
        
 

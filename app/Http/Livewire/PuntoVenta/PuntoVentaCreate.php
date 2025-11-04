@@ -11,9 +11,20 @@ class PuntoVentaCreate extends Component
 {
 
     protected $listeners = ['render'];
-    public $search,$user_id;
+    public $open = false;
+    public $search,$user_id,$monto_recibido ;
     public $cliente_general = '1',$cantidad,$presentacion,$marca_id,$categoria,$precio_venta,$precio_compra,$stock_minimo,$vencimiento,$fecha_vencimiento;
 
+    
+    public function updatedSearch($value){
+        if ($value) {
+            $this->open = true;
+        }else{
+            $this->open = false;
+        }
+    }
+    
+    
     protected $rules = [
       'nombre' => 'required|max:255|min:2',
       'marca_id' => 'required',
