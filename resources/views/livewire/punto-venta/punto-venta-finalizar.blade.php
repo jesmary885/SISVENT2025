@@ -251,8 +251,8 @@
 
                                         <input 
                                         type="number" 
-                                        id="monto_cancelado_total_dol"
-                                        wire:model="monto_cancelado_total_dol"
+                                        id="montocdol"
+                                        wire:model="montocdol"
                                         class="w-full px-4 mr-1 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white placeholder-gray-400"
                                         placeholder="Monto recibido"
                                         >
@@ -261,7 +261,7 @@
 
                                     </div>
                                     
-                                    @error('monto_cancelado_total')
+                                    @error('montocdol')
                                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                                     @enderror
                             </div>
@@ -277,11 +277,16 @@
                     <div class="flex flex-col justify-center items-center ">
                                     <div class=" mt-1 grid grid-cols-1 gap-5 md:grid-cols-2">
 
-                                        <div class="relative p-4 flex flex-col items-center rounded-2xl  bg-green-700 bg-clip-border shadow-md ">
+                                        <div class="bg-red-100 p-4 text-green-800 text-xs font-medium rounded-2xl border-2  border-green-400">
                                             
-                                            <div class="p-4 flex w-auto flex-col justify-center">
-                                                <p class=" text-sm font-bold text-white">CAMBIO</p>
-                                                <h4 class="text-xl text-center font-bold text-white">145</h4>
+                                            <div class="p-4 flex w-auto flex-col justify-center text-center">
+                                                <p class=" text-sm font-bold text-green-800">CAMBIO</p>
+                                                @if($cambio)
+                                                <h4 class="text-xl text-center font-bold text-green-800">{{$cambio}}  $</h4>
+                                                @else
+
+                                                <h4 class="text-xl text-center font-bold text-green-800">0</h4>
+                                                @endif
                                             </div>
                                         </div>
 
@@ -290,9 +295,14 @@
 
                                        <div class="bg-red-100 p-4 text-red-800 text-xs font-medium rounded-2xl border-2  border-red-400">
                                             
-                                            <div class="p-4 flex w-auto flex-col justify-center">
-                                                <p class=" text-sm font-bold text-red-800">DEUDA CLIENTE</p>
-                                                <h4 class="text-xl text-center font-bold text-red-800">145</h4>
+                                            <div class="p-4 flex w-auto flex-col justify-center text-center">
+                                                <p class=" text-sm font-bold text-red-800 ">DEUDA CLIENTE</p>
+                                                @if($deuda)
+                                                <h4 class="text-xl text-center font-bold text-red-800">{{$deuda}}  $</h4>
+                                                @else
+
+                                                <h4 class="text-xl text-center font-bold text-red-800">0</h4>
+                                                @endif
                                             </div>
                                         </div>
                                     </div> 
