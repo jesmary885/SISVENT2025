@@ -1,10 +1,10 @@
 <x-app-layout>
 
 
-    <div class="bg-gradient-to-r from-blue-100 to-white min-h-screen p-8">
+    <div class="bg-gray-100  min-h-screen p-8">
 
 
-        <div class="flex flex-col w-full m-auto container">
+        {{-- <div class="flex flex-col w-full m-auto container">
 
             <div class="flex items-center  text-gray-800">
                 <div class="p-4 w-full"> 
@@ -33,17 +33,7 @@
                             </div>
                             </div>
                         </a>
-                        {{-- <a href="{{route('Punto_venta')}}" class="col-span-12 sm:col-span-6 md:col-span-3 cursor-pointer  ">
-                            <div class="flex flex-row bg-white shadow-lg rounded-lg p-4">
-                            <div class="flex items-center justify-center flex-shrink-0 h-16 w-16 rounded-xl  text-green-500">
-                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><g><rect x="8.297" y="358.547" fill-rule="evenodd" clip-rule="evenodd" fill="#f2f5f7" width="495.406" height="115.381"/><rect x="74.071" y="145.828" fill-rule="evenodd" clip-rule="evenodd" fill="#f2f5f7" width="366.658" height="212.719"/><rect x="267.193" y="38.069" fill-rule="evenodd" clip-rule="evenodd" fill="#85b5ed" width="156.74" height="54.581"/><rect x="119.394" y="38.069" fill-rule="evenodd" clip-rule="evenodd" fill="#85b5ed" width="106.358" height="174.918"/><rect x="315.813" y="92.65" fill-rule="evenodd" clip-rule="evenodd" fill="#85b5ed" width="59.507" height="53.178"/><g><path fill="#5B57A4" d="M406.4,268H284.729c-4.581,0-8.296,3.916-8.296,8.5c0,4.581,3.715,8.5,8.296,8.5H406.4    c4.582,0,8.3-3.92,8.3-8.5C414.7,271.916,410.982,268,406.4,268z"/><path fill="#5B57A4" d="M406.4,300H284.729c-4.581,0-8.296,3.42-8.296,8c0,4.583,3.715,8,8.296,8H406.4c4.582,0,8.3-3.417,8.3-8    C414.7,303.42,410.982,300,406.4,300z"/><path fill="#5B57A4" d="M503.703,350H449V145.828c0-4.583-3.688-7.828-8.271-7.828H384v-37h39.934c4.583,0,8.066-3.767,8.066-8.35    V38.069c0-4.583-3.483-8.069-8.066-8.069h-156.74c-4.581,0-8.193,3.486-8.193,8.069V92.65c0,4.583,3.612,8.35,8.193,8.35H308v37    h-74V38.069c0-4.583-3.663-8.069-8.248-8.069H119.394c-4.583,0-8.394,3.486-8.394,8.069V138H74.071    c-4.584,0-8.071,3.245-8.071,7.828V350H8.297C3.715,350,0,353.963,0,358.547v40.584v74.797C0,478.511,3.715,482,8.297,482h495.406    c4.582,0,8.297-3.489,8.297-8.072v-74.797v-40.584C512,353.963,508.285,350,503.703,350z M275,84V46h141v38h-40.68h-59.507H275z     M367,101v37h-43v-37H367z M128,46h89v159h-89V46z M82,154h29v51h-6.233c-4.583,0-8.295,3.919-8.295,8.501    c0,4.583,3.712,8.499,8.295,8.499h135.612c4.582,0,8.297-3.916,8.297-8.499c0-4.582-3.715-8.501-8.297-8.501H234v-51h81.813    h59.507H432v196H82V154z M495,466H17v-59h138v29.693c0,4.583,3.441,8.307,8.021,8.307h185.954c4.582,0,8.024-3.724,8.024-8.307    V407h138V466z M495,391H348.976H163.021H17v-24h57.071h366.658H495V391z"/><path fill="#5B57A4" d="M406.4,236H284.729c-4.581,0-8.296,3.918-8.296,8.502s3.715,8.498,8.296,8.498H406.4    c4.582,0,8.3-3.915,8.3-8.498S410.982,236,406.4,236z"/><path fill="#5B57A4" d="M406.4,168H284.729c-4.581,0-8.729,4.096-8.729,8.679v37.013c0,4.583,4.147,8.308,8.729,8.308H406.4    c4.582,0,8.6-3.725,8.6-8.308v-37.013C415,172.096,410.982,168,406.4,168z M398,205H293v-20h105V205z"/></g><rect x="171.319" y="407.426" fill="#85b5ed" width="169.361" height="20.969"/></g></svg>
-                            </div>
-                            <div class="flex flex-col flex-grow ml-4">
-                   
-                                <div class="font-bold text-lg mt-4">PUNTO DE VENTA</div>
-                            </div>
-                            </div>
-                        </a> --}}
+          
                         <a href="{{route('configuracion')}}" class="col-span-12 sm:col-span-6 md:col-span-3 cursor-pointer  ">
                             <div class="flex flex-row bg-white shadow-lg rounded-lg p-4">
                             <div class="flex items-center justify-center flex-shrink-0 h-16 w-16 rounded-xl text-green-500">
@@ -58,8 +48,82 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
           
+
+        <div class=" bg-gray-100 flex items-center justify-center bg-gray-100">
+    <div class="max-w-7xl w-full mx-auto py-6 sm:px-6 lg:px-8">
+        <div class="flex flex-col lg:flex-row w-full lg:space-x-2 space-y-2 lg:space-y-0 mb-2 lg:mb-4">
+
+            <div class="w-full lg:w-1/4">
+                <div class="widget w-full p-4 rounded-lg bg-white border-l-4 border-purple-400">
+                    <div class="flex items-center">
+                        <div class="icon w-14 p-3.5 bg-purple-400 text-white rounded-full mr-3">
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                            </svg>
+                        </div>
+                        <div class="flex flex-col justify-center">
+                            <div class="text-lg">230k</div>
+                            <div class="text-sm text-gray-400">Ganancias del día</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-full lg:w-1/4">
+                <div class="widget w-full p-4 rounded-lg bg-white border-l-4 border-blue-400">
+                    <div class="flex items-center">
+                        <div class="icon w-14 p-3.5 bg-blue-400 text-white rounded-full mr-3">
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                            </svg>
+                        </div>
+                        <div class="flex flex-col justify-center">
+                            <div class="text-lg">3456</div>
+                            <div class="text-sm text-gray-400">Ganancias del mes</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-full lg:w-1/4">
+                <div class="widget w-full p-4 rounded-lg bg-white border-l-4 border-yellow-400">
+                    <div class="flex items-center">
+                        <div class="icon w-14 p-3.5 bg-yellow-400 text-white rounded-full mr-3">
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+                            </svg>
+                        </div>
+                        <div class="flex flex-col justify-center">
+                            <div class="text-lg">3456</div>
+                            <div class="text-sm text-gray-400">Ventas del día</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-full lg:w-1/4">
+                <div class="widget w-full p-4 rounded-lg bg-white border-l-4 border-red-400">
+                    <div class="flex items-center">
+                        <div class="icon w-14 p-3.5 bg-red-400 text-white rounded-full mr-3">
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                            </svg>
+                        </div>
+                        <div class="flex flex-col justify-center">
+                            <div class="text-lg">12658</div>
+                            <div class="text-sm text-gray-400">Tasa del día</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
             
     </div>
 

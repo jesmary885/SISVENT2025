@@ -5,13 +5,14 @@ namespace App\Http\Livewire\PuntoVenta;
 use App\Models\CarroCompra;
 use App\Models\Producto;
 use App\Models\Tasa;
+use App\Models\Venta;
 use Livewire\Component;
 
 class PuntoVentaCreate extends Component
 {
 
-    protected $listeners = ['render'];
-    public $open = false;
+    protected $listeners = ['render' => 'render','mount' => 'mount' ];
+    public $open = false,$venta_nro,$cant_producto;
     public $search,$user_id,$monto_recibido ;
     public $cliente_general = '1',$cantidad,$presentacion,$marca_id,$categoria,$precio_venta,$precio_compra,$stock_minimo,$vencimiento,$fecha_vencimiento;
 
@@ -37,6 +38,12 @@ class PuntoVentaCreate extends Component
 
     public function mount(){
         $this->user_id = auth()->user()->id;
+
+        $ultimoRegistro = Venta::latest()->first();
+
+        if($ultimoRegistro) $this->venta_nro = $ultimoRegistro->id + 1;
+        else $this->venta_nro = 1;
+
     }
 
     
@@ -61,7 +68,18 @@ class PuntoVentaCreate extends Component
         ->get();
 
 
-      if(!$registros_carro ) $registros_carro = [];
+      if(!$registros_carro ){
+
+        $registros_carro = [];
+        $this->cant_producto = 0;
+
+      } 
+      else{
+
+        $this->cant_producto = CarroCompra::where('estado','abierta')
+          ->where('user_id',$this->user_id)
+          ->sum('cantidad');
+      }
       
          
 

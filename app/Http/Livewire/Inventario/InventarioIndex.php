@@ -6,6 +6,7 @@ use App\Models\Compra;
 use App\Models\Producto;
 use App\Models\ProductoLote;
 use App\Models\ProductoVenta;
+use App\Models\Tasa;
 use App\Models\Venta;
 use Livewire\Component;
 
@@ -27,6 +28,15 @@ class InventarioIndex extends Component
 
 
         return view('livewire.inventario.inventario-index',compact('registros'));
+    }
+
+    public function total_venta_bs($precio){
+
+        $precio_bs = $precio * Tasa::find(1)->tasa_actual;
+
+        return $precio_bs;
+
+
     }
 
      public function delete($productoId){

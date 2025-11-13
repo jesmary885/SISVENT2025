@@ -30,7 +30,7 @@
                                 </div>
                                 <div class="flex flex-col justify-center flex-1">
                                     <div class="text-sm sm:text-base md:text-lg lg:text-xl text-gray-800 text-center font-bold">VENTA NRO.</div>
-                                    <div class="text-xs sm:text-sm md:text-lg text-gray-400 text-center">1</div>
+                                    <div class="text-xs sm:text-sm md:text-lg text-gray-400 text-center">{{$venta_nro}}</div>
                                 </div>
                             </div>
                         </div>
@@ -49,31 +49,45 @@
                                 </div>
                                 <div class="flex flex-col justify-center flex-1">
                                     <div class="text-sm sm:text-base md:text-xl text-gray-800 text-center font-bold mb-1 sm:mb-2">CANTIDAD</div>
-                                    <div class="text-xs sm:text-sm md:text-lg text-gray-400 text-center">6 productos</div>
+                                    @if($cant_producto)
+                                    <div class="text-xs sm:text-sm md:text-lg text-gray-400 text-center">{{$cant_producto}} productos</div>
+                                    @else
+                                    <div class="text-xs sm:text-sm md:text-lg text-gray-400 text-center">NO HAY VENTA ACTIVA</div>
+
+                                    @endif
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Cuarta caja (Total) -->
+                  
+
+                    <!-- Quinta caja (Botón) -->
                     <div class="w-full sm:w-full md:w-1/4 min-h-[100px] sm:min-h-[110px] md:min-h-[120px] flex">
+                        <div class="widget w-full  rounded-lg bg-white border-l-4 border-amber-700 flex items-center justify-center flex-1">
+                            @if($cant_producto)
+                            @livewire('punto-venta.punto-venta-finalizar')
+                            @else
+
+                            <div class="text-xs sm:text-sm md:text-lg text-gray-400 text-center">NO HAY VENTA ACTIVA</div>
+
+                            @endif
+                        </div>
+                    </div>
+
+
+                      <div class="w-full sm:w-full md:w-1/4 min-h-[100px] sm:min-h-[110px] md:min-h-[120px] flex ">
                         <div class="widget w-full p-2 sm:p-3 rounded-lg bg-white border-l-4 border-green-400 flex items-center flex-1">
                             <div class="flex flex-col justify-center w-full text-center">
                                 <div class="text-sm sm:text-base md:text-xl text-gray-800 font-bold mb-1 sm:mb-2">TOTAL A PAGAR</div>
-                                <div class="bg-yellow-100 text-yellow-800 text-sm sm:text-base md:text-lg font-medium px-1 sm:px-2 py-1 rounded-sm border border-yellow-300">
+                                <div class="bg-yellow-100 text-yellow-800 shadow-sm text-sm sm:text-base md:text-lg font-medium px-1 sm:px-2 py-1 rounded-sm border border-yellow-300">
                                     <p class="font-bold text-xs sm:text-sm md:text-2xl">Bs {{$this->total_pagar_bs()}}</p>
                                     <span class="bg-green-200 text-green-800 text-md md:text-xl font-medium px-1 sm:px-2 rounded-sm border border-green-400">
                                         REF. {{$this->total_pagar_global()}}
                                     </span>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <!-- Quinta caja (Botón) -->
-                    <div class="w-full sm:w-full md:w-1/4 min-h-[100px] sm:min-h-[110px] md:min-h-[120px] flex">
-                        <div class="widget w-full p-2 sm:p-3 rounded-lg bg-white border-l-4 border-amber-700 flex items-center justify-center flex-1">
-                             @livewire('punto-venta.punto-venta-finalizar')
                         </div>
                     </div>
 
@@ -264,7 +278,7 @@
                                                                 <td class="px-2 py-1 text-sm lg:text-base text-center">
 
                                                                      <p class="font-semibold inline ">  Bs {{$this->subtotal_bol($registro_c->producto_id,$registro_c->cantidad)}}</p>
-                                                                    <span class="bg-green-200 text-green-800 text-xs font-medium px-2 rounded-sm dark:bg-gray-700 dark:text-green-400 border border-green-400">{{$this->subtotal_dol($registro_c->producto_id,$registro_c->cantidad)}}$</span>
+                                                                    <span class="bg-green-200 text-green-800 text-xs font-medium px-2 rounded-sm dark:bg-gray-700 dark:text-green-400 border border-green-400">REF. {{$this->subtotal_dol($registro_c->producto_id,$registro_c->cantidad)}}</span>
 
                                                                 
                                                                 </td>

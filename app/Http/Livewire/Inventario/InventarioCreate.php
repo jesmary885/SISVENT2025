@@ -20,17 +20,17 @@ class InventarioCreate extends Component
       'marca_id' => 'required',
       'presentacion' => 'required',
       'precio_venta' => 'required',
-      'vencimiento' => 'required',
+      // 'vencimiento' => 'required',
       'stock_minimo' => 'required',
 
     ];
 
     
-    protected $rule_fecha = [
-      'fecha_vencimiento' => 'required',
+    // protected $rule_fecha = [
+    //   'fecha_vencimiento' => 'required',
 
 
-    ];
+    // ];
 
 
 
@@ -56,7 +56,7 @@ class InventarioCreate extends Component
           $this->marca_id = $this->registro->marca_id;
           $this->presentacion = $this->registro->presentacion;
           $this->precio_venta = $this->registro->precio_venta;
-          $this->vencimiento = $this->registro->vencimiento;
+          // $this->vencimiento = $this->registro->vencimiento;
           $this->cod_barra = $this->registro->cod_barra;
           $this->stock_minimo = $this->registro->stock_minimo;
 
@@ -68,10 +68,10 @@ class InventarioCreate extends Component
       $rules = $this->rules;
       $this->validate($rules);
 
-      if($this->vencimiento == 'Si') {
-         $rules = $this->rules;
-        $this->validate($rules);
-      }
+      // if($this->vencimiento == 'Si') {
+      //    $rules = $this->rules;
+      //   $this->validate($rules);
+      // }
 
       if($this->estado == 1) $estado = 'Habilitado';
       else $estado = 'Deshabilitado';
@@ -90,14 +90,14 @@ class InventarioCreate extends Component
         $producto->marca_id = $this->marca_id;
         $producto->presentacion = $this->presentacion;
         $producto->precio_venta = $this->precio_venta;
-        $producto->vencimiento = $this->vencimiento;
+        // $producto->vencimiento = $this->vencimiento;
         $producto->stock_minimo = $this->stock_minimo;
         if($this->cod_barra) $producto->cod_barra = $cod_barra;
         else  $producto->cod_barra = $cod_barra;
 
         $producto->save();
 
-        $this->reset(['open','nombre','estado','marca_id','presentacion','precio_venta','vencimiento','stock_minimo','cod_barra']);
+        $this->reset(['open','nombre','estado','marca_id','presentacion','precio_venta','stock_minimo','cod_barra']);
         $this->emitTo('inventario.inventario-index','render');
 
         
@@ -117,7 +117,7 @@ class InventarioCreate extends Component
             'marca_id' => $this->marca_id,
             'presentacion' => $this->presentacion,
             'precio_venta' => $this->precio_venta,
-            'vencimiento' => $this->vencimiento,
+            // 'vencimiento' => $this->vencimiento,
             'stock_minimo' => $this->stock_minimo,
             'cod_barra' => $cod_barra,
         ]);

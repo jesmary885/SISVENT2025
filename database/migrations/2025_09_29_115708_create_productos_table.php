@@ -29,7 +29,7 @@ return new class extends Migration
 
             //$table->enum('presentacion',['Unidad','Libra','Kg','Caja','Paquete','Lata','Galon','Botella','Tira','Sobre','Saco','Tarjeta','Otro'])->default('Unidad');
             $table->integer('stock_minimo');
-            $table->enum('vencimiento',['Si','No'])->default('No');
+            // $table->enum('vencimiento',['Si','No'])->default('No');
            $table->enum('exento',['Si','No'])->default('Si')->nullable();
           
 

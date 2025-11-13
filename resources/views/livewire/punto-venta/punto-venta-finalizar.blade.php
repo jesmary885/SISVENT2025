@@ -24,6 +24,60 @@
           cursor: pointer;
           }
 
+           .update-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .update-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .update-btn:active {
+            transform: translateY(0);
+        }
+        
+        .update-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .update-btn:hover::after {
+            left: 100%;
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(102, 126, 234, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(102, 126, 234, 0);
+            }
+        }
+        
+        .last-update {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
 
         select {
             background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
@@ -39,7 +93,7 @@
     </style>
 
 
-    <button type="button" wire:click="$set('open',true)" type="button" wire:loading.attr="disabled" class="w-full py-2 sm:py-3 cursor-pointer px-3 sm:px-4 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-gray-900 font-bold text-xs sm:text-sm md:text-base rounded-lg sm:rounded-xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 flex items-center justify-center gap-1 sm:gap-2 border-2 border-amber-300 group">
+    <button type="button" wire:click="$set('open',true)" type="button" wire:loading.attr="disabled" class=" cursor-pointer update-btn w-full p-4 text-white font-bold text-lg rounded-xl flex items-center justify-center">
     
 
 
@@ -55,7 +109,7 @@
 
     </button>
 
-    <x-dialog-modal wire:model="open" maxWidth="4xl">
+    <x-dialog-modal wire:model="open" maxWidth="xl">
 
         <x-slot name="title">
             <div class=" flex justify-between ">
@@ -140,7 +194,7 @@
                     </div>
                     <select wire:model="metodo_pago" class="w-full pl-10 pr-10 py-3 bg-white border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none cursor-pointer transition-all duration-200">
                         <option value="" selected>Selecciona el método de pago</option>
-                        <option value="pago_movil">Punto de venta</option>
+                        <option value="debito">Débito</option>
                         <option value="pago_movil">Pago móvil</option>
                         <option value="dol_efec">Dólares en efectivo</option>
                         <option value="bs_efec">Bolívares en efectivo</option>
@@ -156,11 +210,11 @@
 
                 @if($metodo_pago == "bs_efec")
 
-                <hr>
+                 <hr class=" m-4 text-gray-200">
 
                     <div class="flex justify-start ">
 
-                        <div aria-label="action panel"  tabindex="0" class="focus:outline-none w-full  py-4 px-4  dark:bg-gray-800 rounded-md">
+                        <div aria-label="action panel"  tabindex="0" class="focus:outline-none  py-4 px-4  dark:bg-gray-800 rounded-md">
 
                                 <div class="flex" >
 
@@ -185,32 +239,71 @@
                         @if($monto_cancelado == 0)
 
                             <div class="ml-2">
-                                    <label for="precio_venta" class="block text-sm font-medium text-gray-700 mb-2">
-                                        Monto total cancelado en Bs
-                                    </label>
+                                    
 
                                     <div class="flex">
 
                                         <input 
                                         type="number" 
-                                        id="monto_cancelado_total_bs"
-                                        wire:model="monto_cancelado_total_bs"
+                                        id="montocbs"
+                                        wire:model="montocbs"
                                         class="w-full px-4 mr-1 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white placeholder-gray-400"
-                                        placeholder="Precio en dólares"
+                                        placeholder="Monto recibido"
                                         >
 
                                         <p class="text-xl font-medium text-gray-700 ml-1 mt-2">Bs</p>
 
                                     </div>
                                     
-                                    @error('monto_cancelado_total')
+                                    @error('montocbs')
                                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                                     @enderror
                             </div>
 
+                           
+
                         @endif
 
                     </div>
+
+                    @if($monto_cancelado == 0)
+
+                    <div class="flex flex-col justify-center items-center ">
+                                    <div class=" mt-1 grid grid-cols-1 gap-5 md:grid-cols-2">
+
+                                        <div class="bg-red-100 p-4 text-green-800 text-xs font-medium rounded-2xl border-2  border-green-400">
+                                            
+                                            <div class="p-4 flex w-auto flex-col justify-center text-center">
+                                                <p class=" text-sm font-bold text-green-800">CAMBIO</p>
+                                                @if($cambio)
+                                                <h4 class="text-xl text-center font-bold text-green-800">{{$cambio}}  Bs</h4>
+                                                @else
+
+                                                <h4 class="text-xl text-center font-bold text-green-800">0</h4>
+                                                @endif
+                                            </div>
+                                        </div>
+
+
+
+
+                                       <div class="bg-red-100 p-4 text-red-800 text-xs font-medium rounded-2xl border-2  border-red-400">
+                                            
+                                            <div class="p-4 flex w-auto flex-col justify-center text-center">
+                                                <p class=" text-sm font-bold text-red-800 ">DEUDA CLIENTE</p>
+                                                @if($deuda)
+                                                <h4 class="text-xl text-center font-bold text-red-800">{{$deuda}}  Bs</h4>
+                                                @else
+
+                                                <h4 class="text-xl text-center font-bold text-red-800">0</h4>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div> 
+                            
+                    </div>
+
+                    @endif
 
                 @endif
 
@@ -313,6 +406,16 @@
 
                 @endif
 
+                <div class="relative mt-3">
+                    <textarea 
+        rows="5"
+        class="w-full px-4 py-4 text-gray-500 bg-white border border-gray-300 rounded-2xl shadow-inner focus:outline-none focus:ring-4 focus:ring-amber-500/30 focus:border-amber-400 resize-none transition-all duration-300 hover:shadow-lg font-medium"
+        placeholder="💡 Escribe algun comentario de la venta que desees guardar..."></textarea>
+                </div>
+
+
+
+
 
 
                  
@@ -335,7 +438,7 @@
                 wire:click="save"
                 wire:loading.attr="disabled"
                 
-                 class="w-full py-2 sm:py-3 cursor-pointer px-3 sm:px-4 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-gray-900 font-bold text-xs sm:text-sm md:text-base rounded-lg sm:rounded-xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 flex items-center justify-center gap-1 sm:gap-2 border-2 border-amber-300 group">
+                 class=" cursor-pointer update-btn w-full p-4 text-white font-bold text-lg rounded-xl flex items-center justify-center">
                 
        
                         <span wire:loading>Procesando...</span>

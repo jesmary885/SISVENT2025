@@ -26,10 +26,12 @@ return new class extends Migration
             $table->float('impuesto')->nullable();
             $table->float('exento')->nullable();
 
+             $table->longText('comentario')->nullable();
+
             $table->float('total_pagado_cliente')->nullable();
            // $table->float('deuda_cliente')->nullable();
 
-            $table->string('estado');
+            $table->string('estado')->nullable();
             $table->float('vuelto')->nullable();      
 
             $table->string('metodo_pago');

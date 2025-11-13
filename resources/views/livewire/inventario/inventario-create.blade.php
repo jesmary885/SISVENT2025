@@ -1,4 +1,4 @@
-<div class=" font-Arima " >
+<div class=" font-Arima" >
 
     <style>
       
@@ -34,29 +34,90 @@
             -webkit-print-color-adjust: exact;
             print-color-adjust: exact;
         }
+
+         .modal-fix {
+            max-height: 85vh !important;
+            overflow-y: auto !important;
+        }
+
+        /* Asegurar que el modal esté por encima de todo */
+        [x-dialog-modal] {
+            z-index: 10000 !important;
+        }
+
+        /* Forzar que el contenido del modal sea visible */
+        [x-slot="content"] {
+            max-height: 60vh !important;
+            overflow-y: auto !important;
+        }
+
+         .update-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .update-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .update-btn:active {
+            transform: translateY(0);
+        }
+        
+        .update-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .update-btn:hover::after {
+            left: 100%;
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+
+
+        
+        .last-update {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
  
       
     </style>
 
+    @if($tipo == 'agregar')
 
-    <button type="button" wire:click="$set('open',true)" type="button" wire:loading.attr="disabled" class=" @if($tipo == 'agregar') bg-blue-500 hover:bg-blue-600 text-white ml-4 text-md @endif cursor-pointer text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-1 py-1  text-center  items-center  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-         @if($tipo == 'agregar')
+        <button type="button" wire:click="$set('open',true)" type="button" wire:loading.attr="disabled" class="cursor-pointer update-btn w-full p-4 text-white font-bold text-lg rounded-xl flex items-center justify-center">
+            <i class="fas fa-plus-circle mr-2"></i>
+            Agregar Producto
+        </button>
 
+    @else
 
-             <p >
-            CREAR REGISTRO
-         </p>
-
-       
-
+     <button type="button" wire:click="$set('open',true)" type="button" wire:loading.attr="disabled" class=" cursor-pointer action-btn bg-green-500 hover:bg-green-600 text-white p-2 rounded-lg">
+           <i class="fas fa-edit text-sm"></i>
         
-       
+        </button>
 
-        @else
+    @endif
 
-        <img src="{{Storage::url('imagen/edit.png')}}" alt="icono" class="w-8 h-8">
-        @endif
-    </button>
+
+                    
+
+
 
     <x-dialog-modal wire:model="open" maxWidth="4xl">
 
@@ -72,7 +133,7 @@
                 <p>Editar registro</p>
                 @endif
 
-                <button type="button" wire:click="close" wire:loading.attr="disabled"  class="py-2.5 px-3 me-2 mb-2 text-sm font-bold text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+               <button type="button" wire:click="close" wire:loading.attr="disabled"  class=" cursor-pointer  py-2.5 px-3 me-2 mb-2 text-sm font-bold text-white focus:outline-none bg-black rounded-full border border-gray-200 hover:bg-gray-100 hover:text-gray-200 focus:z-10 focus:ring-4 focus:ring-gray-100  ">
                     X
                 </button>
 
@@ -193,7 +254,7 @@
                         </div>
                     </div>
 
-                    <div class="w-1/3 mr-1">
+                    {{-- <div class="w-1/3 mr-1">
 
                         <label for="vencimiento" class="block text-sm font-medium text-gray-700 mb-2 ">
                             Posee fecha de vencimiento?
@@ -215,7 +276,7 @@
                             @error('vencimiento')
                                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                             @enderror
-                    </div>
+                    </div> --}}
 
 
 
@@ -276,7 +337,7 @@
                 wire:click="save"
                 wire:loading.attr="disabled"
                 
-                 class="text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                 class="bg-blue-600 cursor-pointer hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg flex items-center transition duration-200 transform hover:-translate-y-0.5 shadow-md hover:shadow-lg">
                 
        
                         <span wire:loading>Procesando...</span>
@@ -286,7 +347,7 @@
 
 
 
-            <button type="button" wire:click="close" wire:loading.attr="disabled" class="text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            <button type="button" wire:click="close" wire:loading.attr="disabled" class="bg-blue-600 cursor-pointer hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg flex items-center transition duration-200 transform hover:-translate-y-0.5 shadow-md hover:shadow-lg ml-2">
                 Cerrar
             </button>
 
