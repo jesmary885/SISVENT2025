@@ -11,10 +11,10 @@
                 <div class="flex items-center justify-between">
                     <div class="flex items-center">
                         <i class="fas fa-list text-white text-xl mr-3"></i>
-                        <h2 class="text-xl font-bold text-white">Ventas Registradas</h2>
+                        <h2 class="text-xl font-bold text-white">Compras Registradas</h2>
                     </div>
                     <span class="bg-white text-blue-600 px-3 py-1 rounded-full text-sm font-bold">
-                        {{ $registros->count() }} ventas
+                        {{ $registros->count() }} compras
                     </span>
                 </div>
             </div>
@@ -28,19 +28,23 @@
                             <th scope="col" class="px-6 py-4 text-left font-semibold text-gray-700">
                                 Fecha
                             </th>
+
+                             <th scope="col" class="px-6 py-4 text-center font-semibold text-gray-700">
+                                Producto
+                            </th>
                             <th scope="col" class="px-6 py-4 text-center font-semibold text-gray-700">
-                                Cant. de productos
+                                Cantidad
                             </th>
                             <th scope="col" class="px-6 py-4 text-center font-semibold text-gray-700">
                                 Método de pago
                             </th>
 
                             <th scope="col" class="px-6 py-4 text-center font-semibold text-gray-700">
-                                Total
+                                Precio por unidad
                             </th>
 
                              <th  class="px-6 py-3 text-sm lg:text-md">
-                            
+                                Total pagado
                             </th>
   
 
@@ -65,10 +69,17 @@
                             <td class="px-6 py-4 text-center">
                                 <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-lg font-medium">
                                     
-                                   {{$this->cant_productos($registro)}}
+                                   {{$registro->producto->nombre}}
                                 </span>
-                        </td>
-                            
+                         </td>
+
+                            <td class="px-6 py-4 text-center">
+                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-lg font-medium">
+                                    
+                                   {{$registro->cantidad}}
+                                </span>
+                         </td>
+
                          <td class="px-6 py-4 text-center">
                                 <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-lg font-medium">
                                     
@@ -89,18 +100,36 @@
                                     @endif
                                 </span>
                         </td>
-
+                            
                          <td class="px-6 py-4 text-center">
                                 <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-lg font-medium">
                                     
-                                    <p class="font-semibold inline ">  Bs {{$this->subtotal_bol($registro)}}</p>
-                                    <span class="bg-green-200 text-green-800 text-xs font-medium px-2 rounded-sm dark:bg-gray-700 dark:text-green-400 border border-green-400">REF. {{$this->subtotal_dol($registro)}}</span>
+                                    @if($registro->precio_compra_dolares)
+                                    {{$registro->precio_compra_dolares}} $
+                                    @endif
+                                    @if($registro->precio_compra_bolivares)
+                                    {{$registro->precio_compra_bolivares}} Bs
+                                    @endif
+                            
+                                </span>
+                        </td>
+
+                         <td class="px-6 py-4 text-center">
+                                 <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-lg font-medium">
+                                    
+                                    @if($registro->total_pagado_dolares)
+                                    {{$registro->total_pagado_dolares}} $
+                                    @endif
+                                    @if($registro->total_pagado_bolivares)
+                                    {{$registro->total_pagado_bolivares}} Bs
+                                    @endif
+                            
                                 </span>
                         </td>
 
                          <td class="px-6 py-4 text-center">
 
-                                         @livewire('ventas.venta-view', ['venta' => $registro],key(01.,'$registro->id'))
+                                @livewire('administracion.compras.compras-edit', ['registro' => $registro],key(01.,'$registro->id'))
                                  
                     
                         </td>
@@ -121,17 +150,10 @@
                 <i class="fas fa-box-open text-gray-500 text-3xl"></i>
             </div>
 
-            <p class="text-gray-600 mb-6 text-lg">No hay ventas registradas</p>
+            <p class="text-gray-600 mb-6 text-lg">No hay compras registradas</p>
           
         </div>
     </div>
     @endif
 </div>
-
-
-
-
-
-
-
 

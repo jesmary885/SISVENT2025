@@ -50,7 +50,7 @@ class GeneralController extends Controller
 
      public function administracion(){
 
-        //return view('administracion.index');
+        return view('administracion.index');
     }
 
 

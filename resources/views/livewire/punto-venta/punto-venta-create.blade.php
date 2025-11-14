@@ -15,7 +15,7 @@
     {{-- <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:gap-4 "> --}}
 
         <!-- component -->
-        <div class="bg-gray-200 flex items-center justify-center">
+        <div class="bg-gray-200  flex items-center justify-center">
             <div class="w-full mx-auto py-2">
                 <div class="flex flex-col sm:flex-col md:flex-row w-full md:space-x-2 space-y-2 md:space-y-0 mb-2 md:mb-4">
                     
@@ -65,7 +65,7 @@
 
                     <!-- Quinta caja (Botón) -->
                     <div class="w-full sm:w-full md:w-1/4 min-h-[100px] sm:min-h-[110px] md:min-h-[120px] flex">
-                        <div class="widget w-full  rounded-lg bg-white border-l-4 border-amber-700 flex items-center justify-center flex-1">
+                        <div class="widget w-full  rounded-lg bg-white border-l-4 border-purple-700  flex items-center justify-center flex-1">
                             @if($cant_producto)
                             @livewire('punto-venta.punto-venta-finalizar')
                             @else
@@ -95,237 +95,156 @@
             </div>
         </div>
 
-		<div class="  px-1 lg:p-1 rounded-md">
-
-            <div class=" w-full h-full">
-                <div class="container mx-auto">
-        
-                        <div aria-label="action panel"  tabindex="0" class="focus:outline-none w-full shadow-xl py-4 px-4 bg-white dark:bg-gray-800 rounded-md">
-
-                            <div class="flex" >
-
-                                <p tabindex="0" class="focus:outline-none text-lg text-gray-800 dark:text-gray-100 font font-semibold pb-3 mr-3">Cliente general</p>
-                                <div class="w-12 h-6 cursor-pointer rounded-full relative shadow-sm">
-                                    <input aria-label="subscribe"
-                                    type="checkbox"
-                                    value='1'
-                                    name="cliente_general"
-                                    wire:model.defer="cliente_general"
-                                    id="cliente_general"
-                                    class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:bg-indigo-600 focus:outline-none checkbox w-4 h-4 rounded-full bg-white absolute m-1 shadow-sm appearance-none cursor-pointer" />
-                                    <label for="cliente_general" class="toggle-label bg-gray-200 block w-12 h-6 overflow-hidden rounded-full bg-gray-300 cursor-pointer"></label>
-                                </div>
-
-                            </div>
-
-                            <hr class="text-gray-300" >
-
-                            <div class="mt-4">
-                                <input wire:model="search" type="text" id="simple-search" class="focus:outline-none bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-t-2xl  focus:ring-blue-500 focus:border-blue-500 block w-full ps-3 px-1 py-2  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ingrese el nombre o código de barra del producto" required />
-                                
-                                 <div class="hidden" :class="{ 'hidden' : !$wire.open }" @click.away="$wire.open = false">
-                                    <div class="rounded-b-lg bg-amber-200 shadow-2xl">
-                                        <div class="px-3 py-2"> <!-- Reducido padding -->
-                                            @forelse ($registros as $registro)
-                                                <div class="flex items-center justify-between mb-2 p-3 bg-white/20 backdrop-blur-lg rounded-xl border border-white/30 hover:bg-white/25 transition-all"> <!-- Reducido padding -->
-                                                    <div class="flex-1 min-w-0"> <!-- Added min-w-0 for text truncation -->
-                                                        <h3 class=" font-semibold text-sm truncate">{{$registro->nombre}}</h3> <!-- Texto más pequeño -->
-                                                        <div class="flex items-center gap-3  text-xs mt-1"> <!-- Texto más pequeño -->
-                                                            <span class="font-bold">Bs {{$this->precio_bolivares($registro->precio_venta)}}</span>
-                                                            <span class=" bg-yellow-100 text-yellow-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-gray-700 dark:text-yellow-300 border border-yellow-300">REF {{$registro->precio_venta}}</span>
-                                                        </div>
-                                                    </div>
-                                                    
-                                                    <!-- Componente de cantidades adaptado -->
-                                                    <div class="text-white ml-2">
-                                                        @livewire('punto-venta.punto-venta-cantidades', ['registro' => $registro], key($registro->id))
-                                                    </div>
-                                                </div>
-                                            @empty
-                                                <div class="text-center py-4 bg-white/30 backdrop-blur rounded-xl"> <!-- Reducido padding -->
-                                                    <p class="text-gray-700 text-sm font-semibold">Sin registros</p> <!-- Texto más pequeño -->
-                                                </div>
-                                            @endforelse
-                                        </div>
-                                    </div>
-                                </div>
-
-                                 {{-- @if ($registros )
-
-
-                                    <div class=" bg-white ">
-                                        <div class=" overflow-x-auto rounded-b-2xl  border-2 border-gray-300  ">
-                                                <table class=" text-sm   text-gray-700 min-w-full shadow-md">
-                                                    <thead class="text-sm text-gray-60 uppercase bg-gray-300 ">
-                                                        <tr>
-                                                            <th scope="col" class="px-6 py-1 text-sm lg:text-md">
-                                                                Producto
-                                                            </th>
-                                                     
-                                                           
-                                                            <th scope="col" class="px-6 py-1 text-sm lg:text-md">
-                                                                Precio
-                                                            </th>
-                                                   
-                                                        
-                                                            <th  class="px-6 py-1 text-sm lg:text-md">
-                                                            
-                                                            </th>
-                                                    
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-
-                                                        @foreach ($registros as $registro)
-                                                                    
-                                                            <tr class="bg-white text-center   hover:bg-gray-100 dark:hover:bg-gray-600">
-                                                                <th scope="row" class="px-2 py-2 break-words max-w-xs whitespace-normal  text-center font-medium text-gray-900 dark:text-white text-sm md:text-base">
-                                                                    {{$registro->nombre}}
-                                                                </th>
-                                      
-                                                           
-                                                                <td class="px-2 py-2 text-sm lg:text-base text-center">
-
-                                                                    <p class="font-semibold inline ">  Bs {{$this->precio_bolivares($registro->precio_venta)}}</p>
-                                                                    <span class="bg-green-200 text-green-800 text-xs font-medium px-2 rounded-sm dark:bg-gray-700 dark:text-green-400 border border-green-400"> {{$registro->precio_venta}}$</span>
-
-
-                                                               
-                                                                </td>
-                                                             
-                                                                <td class="mr-2 px-2 py-2" >
-
-                                                                      @livewire('punto-venta.punto-venta-cantidades', ['registro' => $registro],key(01.,'$registro->id'))
-                                                                  
-                                                                </td>
-
-
-                                                                
-                                                            </tr>
-                                                        @endforeach
-                                                    </tbody>
-                                                </table>
-                                        </div>
-
-                                    </div>
-
-                                @endif --}}
-                            
-                            
-                            
-                                </div>
-                            
-                            
-                        </div>
-
-                </div>
-            </div>
-
-
-		</div>
-
-
-		<div class=" px-1 lg:p-1 rounded-md">
-
-            <div class=" w-full h-full">
-                <div class="container mx-auto">
-
-                    {{-- <div class="bg-red-100 justify-center text-center text-red-800   text-2xl font-medium px-2.5 py-0.5 rounded-sm dark:bg-red-900 dark:text-red-300" >
-                        FACTURACIÓN
-                    </div> --}}
-
-                    
-
-                      @if ($registros_carro )
-
-
-                                    <div class=" bg-white ">
-                                        <div class=" overflow-x-auto rounded-t-2xl border-2 border-gray-300  ">
-                                                <table class=" text-sm   text-gray-700 min-w-full shadow-md">
-                                                    <thead class="text-sm text-gray-60 uppercase bg-gray-300 ">
-                                                        <tr>
-                                                            <th scope="col" class="px-6 py-1 text-sm lg:text-md">
-                                                                Producto
-                                                            </th>
-                                                            <th scope="col" class="px-6 py-1 text-sm lg:text-md">
-                                                                Cantidad
-                                                            </th>
-                                                           
-                                                            <th scope="col" class="px-6 py-1 text-sm lg:text-md">
-                                                                Subtotal
-                                                            </th>
-                                                   
-                                                        
-                                                            <th  class="px-6 py-1 text-sm lg:text-md">
-                                                            
-                                                            </th>
-                                                    
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-
-                                                        @foreach ($registros_carro as $registro_c)
-                                                                    
-                                                            <tr class="bg-white text-center   hover:bg-gray-100 dark:hover:bg-gray-600 border-b-2 border-gray-200">
-                                                                <th scope="row" class="px-2 py-1 break-words max-w-xs whitespace-normal  text-center font-medium text-gray-900 dark:text-white text-sm md:text-base">
-                                                                    {{$registro_c->producto->nombre}}
-                                                                </th>
-                                                                <td class="px-2 py-1 text-sm lg:text-base text-center">
-                                                                    {{$registro_c->cantidad}}
-                                                                </td>
-                                                            
-                                                           
-                                                                <td class="px-2 py-1 text-sm lg:text-base text-center">
-
-                                                                     <p class="font-semibold inline ">  Bs {{$this->subtotal_bol($registro_c->producto_id,$registro_c->cantidad)}}</p>
-                                                                    <span class="bg-green-200 text-green-800 text-xs font-medium px-2 rounded-sm dark:bg-gray-700 dark:text-green-400 border border-green-400">REF. {{$this->subtotal_dol($registro_c->producto_id,$registro_c->cantidad)}}</span>
-
-                                                                
-                                                                </td>
-                                                             
-                                                                <td class="mr-2 px-2 py-1" >
-                                                                    <button
-                                                                        class="btn btn-danger btn-sm cursor-pointer" 
-                                                                        wire:click="delete('{{$registro_c->id}}')"
-                                                                        wire:loading.class="text-red-600 opacity-25"
-                                                                        title="Eliminar">
-                                                                        
-
-                                                                        <img src="{{Storage::url('imagen/eliminar.png')}}" alt="icono" class=" w-8 h-8">
-
-                                                                    
-                                                                    </button>
-                                                                </td>
-
-
-
-                                                                
-                                                            </tr>
-                                                    @endforeach
-                                                    </tbody>
-                                                </table>
-
-                                                
-                                                
-                                        </div>
-              
-
-                                    </div>
-
-                                @endif
-
-                </div>
-            </div>
-
-
-
-
-		
-		</div>
-	{{-- </div> --}}
-
+		<div class="grid grid-cols-1 lg:grid-cols-2 gap-4 p-2 lg:p-3 bg-gray-50 rounded-xl">
     
+    <!-- Panel de Búsqueda y Productos -->
+    <div class="bg-white rounded-2xl shadow-lg border border-gray-200 p-4 lg:p-6">
+        <!-- Header con Toggle -->
+        <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center space-x-3">
+                <i class="fas fa-user text-blue-500 text-lg"></i>
+                <p class="text-xl font-bold text-gray-800">Cliente General</p>
+            </div>
+            <div class="relative inline-block w-12 h-6">
+                <input 
+                    type="checkbox"
+                    value='1'
+                    name="cliente_general"
+                    wire:model.defer="cliente_general"
+                    id="cliente_general"
+                    class="sr-only"
+                />
+                <label 
+                    for="cliente_general" 
+                    class="block w-12 h-6 rounded-full cursor-pointer transition-all duration-300 ease-in-out
+                           {{ $cliente_general ? 'bg-blue-500' : 'bg-gray-300' }}"
+                >
+                    <span class="absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-all duration-300 ease-in-out
+                                 {{ $cliente_general ? 'transform translate-x-6' : '' }}"></span>
+                </label>
+            </div>
+        </div>
 
+        <hr class="border-gray-200 mb-6">
 
+        <!-- Barra de Búsqueda -->
+        <div class="relative mb-2">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <i class="fas fa-search text-gray-400"></i>
+            </div>
+  <input 
+    wire:model="search" 
+    type="text" 
+    class="w-full pl-10 pr-4 py-4 bg-gray-100 border-0 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg transition-all duration-300 placeholder-gray-500 shadow-sm"
+    placeholder="Buscar producto por nombre o código..."
+/>
+        </div>
 
+        <!-- Lista de Productos -->
+        <div class="hidden" :class="{ 'hidden' : !$wire.open }" @click.away="$wire.open = false">
+            <div class="mt-2 bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl shadow-lg border border-amber-200">
+                <div class="p-4 max-h-96 overflow-y-auto">
+                    @forelse ($registros as $registro)
+                        <div class="flex items-center justify-between mb-3 p-4 bg-white/80 backdrop-blur-sm rounded-xl border border-amber-100 hover:bg-white hover:shadow-md transition-all duration-300 group">
+                            <div class="flex-1 min-w-0">
+                                <h3 class="font-semibold text-gray-800 text-sm truncate group-hover:text-blue-600">{{$registro->nombre}}</h3>
+                                <div class="flex items-center gap-3 mt-2">
+                                    <span class="font-bold text-gray-900">Bs {{$this->precio_bolivares($registro->precio_venta)}}</span>
+                                    <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-3 py-1 rounded-full border border-yellow-300">
+                                        REF ${{$registro->precio_venta}}
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            <!-- Componente de cantidades -->
+                            <div class="ml-3">
+                                @livewire('punto-venta.punto-venta-cantidades', ['registro' => $registro], key($registro->id))
+                            </div>
+                        </div>
+                    @empty
+                        <div class="text-center py-6 bg-white/50 rounded-xl">
+                            <i class="fas fa-search text-gray-400 text-2xl mb-2"></i>
+                            <p class="text-gray-600 font-semibold">No se encontraron productos</p>
+                        </div>
+                    @endforelse
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Carrito de Compras -->
+    <div class="bg-white rounded-2xl shadow-lg border border-gray-200 p-4 lg:p-6">
+        @if ($registros_carro)
+            <div class="mb-4 flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <i class="fas fa-shopping-cart text-green-500 text-lg"></i>
+                    <h2 class="text-xl font-bold text-gray-800">Carrito de Compras</h2>
+                </div>
+                <span class="bg-green-100 text-green-800 text-sm font-medium px-3 py-1 rounded-full">
+                    {{ count($registros_carro) }} items
+                </span>
+            </div>
+
+            <div class="overflow-hidden rounded-2xl border border-gray-200 shadow-sm">
+                <table class="w-full text-sm text-gray-700">
+                    <thead class="bg-gradient-to-r from-gray-50 to-gray-100 text-gray-700 uppercase">
+                        <tr>
+                            <th class="px-4 py-3 text-left font-semibold text-sm">Producto</th>
+                            <th class="px-4 py-3 text-center font-semibold text-sm">Cantidad</th>
+                            <th class="px-4 py-3 text-center font-semibold text-sm">Subtotal</th>
+                            <th class="px-4 py-3 text-center font-semibold text-sm">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-100">
+                        @foreach ($registros_carro as $registro_c)
+                            <tr class="bg-white hover:bg-blue-50 transition-colors duration-200 group">
+                                <td class="px-4 py-3">
+                                    <div class="flex items-center">
+                                        <div class="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center mr-3">
+                                            <i class="fas fa-box text-white text-xs"></i>
+                                        </div>
+                                        <span class="font-medium text-gray-800 text-sm">{{$registro_c->producto->nombre}}</span>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3 text-center">
+                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-bold bg-blue-100 text-blue-800">
+                                        {{$registro_c->cantidad}}
+                                    </span>
+                                </td>
+                                <td class="px-4 py-3 text-center">
+                                    <div class="flex flex-col items-center space-y-1">
+                                        <span class="font-bold text-gray-900">Bs {{$this->subtotal_bol($registro_c->producto_id,$registro_c->cantidad)}}</span>
+                                        <span class="bg-green-100 text-green-800 text-xs font-medium px-2 py-1 rounded-full border border-green-300">
+                                            REF. ${{$this->subtotal_dol($registro_c->producto_id,$registro_c->cantidad)}}
+                                        </span>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3 text-center">
+                                    <button
+                                        wire:click="delete('{{$registro_c->id}}')"
+                                        wire:loading.class="opacity-50"
+                                        class="w-10 h-10 bg-red-500 hover:bg-red-600 text-white rounded-xl flex items-center justify-center transition-all duration-300 transform hover:scale-110 group-hover:shadow-lg"
+                                        title="Eliminar del carrito"
+                                    >
+                                        <i class="fas fa-trash text-sm"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+
+        @else
+            <!-- Estado vacío del carrito -->
+            <div class="text-center py-12">
+                <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-shopping-cart text-gray-400 text-2xl"></i>
+                </div>
+                <h3 class="text-lg font-bold text-gray-600 mb-2">Carrito Vacío</h3>
+                <p class="text-gray-500 text-sm">Agrega productos desde el panel de búsqueda</p>
+            </div>
+        @endif
+    </div>
+</div>
 </div>

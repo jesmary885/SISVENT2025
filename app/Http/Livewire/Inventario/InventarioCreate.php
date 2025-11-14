@@ -34,7 +34,7 @@ class InventarioCreate extends Component
 
 
 
-      public function close(){
+    public function close(){
 
         
 

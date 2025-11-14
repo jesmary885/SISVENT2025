@@ -32,7 +32,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('Compras',[GeneralController::class,'compras_index'])->name('compras_index');
     Route::get('Proveedores',[GeneralController::class,'proveedores_index'])->name('proveedores_index');
     Route::get('cajas',[GeneralController::class,'cajas_index'])->name('cajas_index');
-    Route::get('Admninistracion',[GeneralController::class,'administracion'])->name('administracion');
+    Route::get('Administracion',[GeneralController::class,'administracion'])->name('administracion');
     Route::get('Configuracion',[GeneralController::class,'configuracion'])->name('configuracion');
 
 });

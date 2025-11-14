@@ -5,13 +5,14 @@ namespace App\Http\Livewire\Inventario;
 use App\Models\Compra;
 use App\Models\Producto;
 use App\Models\ProductoLote;
+use App\Models\Proveedor;
 use Livewire\Component;
 
 class InventarioAdd extends Component
 {
 
     protected $listeners = ['render'];
-    public $moneda_pago,$user_id,$registro,$open = false,$cantidad,$precio_compra_dolares,$precio_compra_bolivares, $tasa_compra,$fecha_vencimiento,$lote_numero,$metodo_pago,$total_dolares;
+    public $moneda_pago,$user_id,$registro,$proveedores,$proveedor_id,$open = false,$cantidad,$precio_compra_dolares,$precio_compra_bolivares, $tasa_compra,$fecha_vencimiento,$lote_numero,$metodo_pago,$total_dolares;
 
     protected $rules_bs = [
 
@@ -26,6 +27,7 @@ class InventarioAdd extends Component
       'cantidad' => 'required|numeric',
       'precio_compra_dolares' => 'required|numeric',
        'metodo_pago' => 'required',
+       'proveedor_id' => 'required',
 
 
     ];
@@ -41,6 +43,7 @@ class InventarioAdd extends Component
     public function mount(){
 
       $this->user_id = auth()->user()->id;
+      $this->proveedores = Proveedor::all();
     }
 
     public function close(){
@@ -82,7 +85,7 @@ class InventarioAdd extends Component
         $compra->producto_id = $this->registro->id;
         $compra->user_id= $this->user_id;
         $compra->caja_id= 1;
-        $compra->proveedor_id= 1;
+        $compra->proveedor_id= $this->proveedor_id;
         $compra->cantidad= $this->cantidad;
         $compra->metodo_pago= $this->metodo_pago;
 

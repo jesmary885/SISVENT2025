@@ -23,27 +23,103 @@
           padding: 6px 12px;
           cursor: pointer;
           }
+
+
+        select {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+         .modal-fix {
+            max-height: 85vh !important;
+            overflow-y: auto !important;
+        }
+
+        /* Asegurar que el modal esté por encima de todo */
+        [x-dialog-modal] {
+            z-index: 10000 !important;
+        }
+
+        /* Forzar que el contenido del modal sea visible */
+        [x-slot="content"] {
+            max-height: 60vh !important;
+            overflow-y: auto !important;
+        }
+
+         .update-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .update-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .update-btn:active {
+            transform: translateY(0);
+        }
+        
+        .update-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .update-btn:hover::after {
+            left: 100%;
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+
+
+        
+        .last-update {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+ 
       
     </style>
 
 
-    <button type="button" wire:click="$set('open',true)" type="button" wire:loading.attr="disabled" class=" cursor-pointer action-btn bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-lg" title="Agregar stock">
 
-        <i class="fas fa-plus text-sm"></i>
-    
-    </button>
+     <button type="button" wire:click="$set('open',true)" type="button" wire:loading.attr="disabled" class=" cursor-pointer action-btn bg-green-500 hover:bg-green-600 text-white p-2 rounded-lg">
+           <i class="fas fa-edit text-sm"></i>
+        
+        </button>
 
-    <x-dialog-modal wire:model="open" maxWidth="xl">
+
+
+
+
+    <x-dialog-modal wire:model="open" maxWidth="4xl">
 
         <x-slot name="title">
             <div class=" flex justify-between ">
 
-                <p>Agregar registro</p>
 
-                <button type="button" wire:click="close" wire:loading.attr="disabled"  class=" cursor-pointer  py-2.5 px-3 me-2 mb-2 text-sm font-bold text-white focus:outline-none bg-black rounded-full border border-gray-200 hover:bg-gray-100 hover:text-gray-200 focus:z-10 focus:ring-4 focus:ring-gray-100  ">
+                <p>Editar registro</p>
+               
+               <button type="button" wire:click="close" wire:loading.attr="disabled"  class=" cursor-pointer  py-2.5 px-3 me-2 mb-2 text-sm font-bold text-white focus:outline-none bg-black rounded-full border border-gray-200 hover:bg-gray-100 hover:text-gray-200 focus:z-10 focus:ring-4 focus:ring-gray-100  ">
                     X
                 </button>
-
 
 
 
@@ -55,6 +131,9 @@
 
         <x-slot name="content">
 
+            <div class="mt-2 w-full h-full ">
+
+                
             <div class=" flex  p-4">
 
                     <div class="w-1/2 mr-3">
@@ -87,7 +166,7 @@
                                 @endforeach
                             </select>
 
-                            @error('cantidad')
+                            @error('proveedor_id')
                                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                             @enderror
                         </div>
@@ -170,19 +249,23 @@
                     </div>
             </div>
 
+    
 
-     
+
+
+         
+            </div>
 
         </x-slot>
 
         <x-slot name="footer">
 
 
-            
             <button 
                 type="button" 
                 wire:click="save"
                 wire:loading.attr="disabled"
+                
                  class="bg-blue-600 cursor-pointer hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg flex items-center transition duration-200 transform hover:-translate-y-0.5 shadow-md hover:shadow-lg">
                 
        
@@ -203,30 +286,12 @@
 
         </x-slot>
 
-{{--         
-        @push('js')
-            <script>
-                function datePicker() {
-                    return {
-                        init() {
-                            // Inicializar Flatpickr cuando el componente esté montado
-                            this.$nextTick(() => {
-                                flatpickr(this.$refs.dateInput, {
-                                    dateFormat: "Y-m-d",
-                                    locale: "es",
-                                    minDate: "today",
-                                    clickOpens: true, // Abrir al hacer clic en cualquier parte
-                                    allowInput: false // No permitir entrada manual
-                                });
-                            });
-                        }
-                    }
-                }
-            </script>
 
-        @endpush --}}
 
     </x-dialog-modal>
+
+
+
   
 
 </div>
