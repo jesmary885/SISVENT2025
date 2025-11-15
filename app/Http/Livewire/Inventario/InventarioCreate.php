@@ -73,8 +73,8 @@ class InventarioCreate extends Component
       //   $this->validate($rules);
       // }
 
-      if($this->estado == 1) $estado = 'Habilitado';
-      else $estado = 'Deshabilitado';
+      if($this->estado == 1) $estado = 'Activo';
+      else $estado = 'Inactivo';
 
       if($this->cod_barra) $cod_barra = $this->cod_barra;
       else  $cod_barra = 'N/A';

@@ -23,6 +23,12 @@
                 <div class="w-full lg:w-auto">
                     @livewire('inventario.inventario-create', ['tipo' => 'agregar'])
                 </div>
+
+                <div class=" w-full lg:w-auto">
+
+                     @livewire('inventario.import-export-inventario')
+
+                </div>
             </div>
         </div>
     </div>

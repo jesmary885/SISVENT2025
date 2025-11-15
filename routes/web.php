@@ -34,5 +34,10 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('cajas',[GeneralController::class,'cajas_index'])->name('cajas_index');
     Route::get('Administracion',[GeneralController::class,'administracion'])->name('administracion');
     Route::get('Configuracion',[GeneralController::class,'configuracion'])->name('configuracion');
+    Route::get('Reportes',[GeneralController::class,'reportes'])->name('reportes');
+
+    Route::get('/inventario/import-export', function () {
+    return view('inventario-import-export');
+})->name('inventario.import-export');
 
 });

@@ -65,20 +65,24 @@
                 </div>
 
                 <!-- Tasa del Día -->
-                <div class="group relative">
-                    <div class="absolute inset-0 bg-gradient-to-r from-red-500 to-red-600 rounded-2xl blur opacity-20 group-hover:opacity-30 transition duration-300"></div>
-                    <div class="relative bg-white rounded-2xl p-6 shadow-lg border border-red-100 transform transition-all duration-300 group-hover:scale-105 group-hover:shadow-xl">
-                        <div class="flex items-center">
-                            <div class="w-14 h-14 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center mr-4 shadow-md">
-                                <i class="fas fa-exchange-alt text-white text-lg"></i>
-                            </div>
-                            <div class="flex-1">
-                                <div class="text-2xl font-bold text-gray-800 mb-1">{{$tasa_dia}}</div>
-                                <div class="text-sm text-gray-500 font-medium">Tasa Bs / USD</div>
+
+                <a href="{{ route('configuracion') }}" class="group relative">
+                    <div class="group relative">
+                        <div class="absolute inset-0 bg-gradient-to-r from-red-500 to-red-600 rounded-2xl blur opacity-20 group-hover:opacity-30 transition duration-300"></div>
+                        <div class="relative bg-white rounded-2xl p-6 shadow-lg border border-red-100 transform transition-all duration-300 group-hover:scale-105 group-hover:shadow-xl">
+                            <div class="flex items-center">
+                                <div class="w-14 h-14 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center mr-4 shadow-md">
+                                    <i class="fas fa-exchange-alt text-white text-lg"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <div class="text-2xl font-bold text-gray-800 mb-1">{{$tasa_dia}}</div>
+                                    <div class="text-sm text-gray-500 font-medium">Tasa Bs / USD</div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+
+                </a>
 
             </div>
 
@@ -91,19 +95,33 @@
                         Productos más vendidos
                     </h3>
                     <div class="space-y-3">
-                        <div class="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
-                            <div class="flex items-center">
-                                <div class="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center mr-3">
-                                    <i class="fas fa-bolt text-white text-xs"></i>
+
+                        @foreach($productosMasVendidos as $index => $producto)
+
+                            <div class="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
+                                <div class="flex items-center">
+                                    <div class="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center mr-3">
+                                        <i class="fas fa-bolt text-white text-xs"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-semibold text-gray-800">{{ $producto['nombre'] }}</div>
+
+                                    </div>
                                 </div>
-                                <div>
-                                    <div class="font-semibold text-gray-800">Venta rápida</div>
-                                    <div class="text-xs text-gray-500">Hace 15 min</div>
-                                </div>
+                                <div class="text-green-600 font-bold text-sm">{{ $producto['total_vendido'] }} unidades</div>
+                                     <div class="text-xs text-gray-500">$ {{ number_format($producto['total_ingresos'], 2) }}</div>
                             </div>
-                            <div class="text-green-600 font-bold text-sm">+$45</div>
+
+                        @endforeach
+        
+                        @if($productosMasVendidos->isEmpty())
+
+                        <div class="text-center py-4 text-gray-500">
+                            <i class="fas fa-chart-bar text-2xl mb-2"></i>
+                            <p>No hay ventas este mes</p>
                         </div>
-                        <div class="flex items-center justify-between p-3 bg-green-50 rounded-lg">
+                        @endif
+                        {{-- <div class="flex items-center justify-between p-3 bg-green-50 rounded-lg">
                             <div class="flex items-center">
                                 <div class="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center mr-3">
                                     <i class="fas fa-users text-white text-xs"></i>
@@ -114,7 +132,7 @@
                                 </div>
                             </div>
                             <div class="text-green-600 font-bold text-sm">+$120</div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
 
@@ -125,22 +143,28 @@
                         Acciones Rápidas
                     </h3>
                     <div class="grid grid-cols-2 gap-3">
-                        <button class="p-3 bg-blue-50 hover:bg-blue-100 rounded-lg transition duration-200 flex items-center justify-center flex-col">
+                        <a href="{{ route('ventas_index') }}" class="p-3 bg-purple-50 hover:bg-purple-100 rounded-lg transition duration-200 flex items-center justify-center flex-col">
                             <i class="fas fa-plus-circle text-blue-500 text-lg mb-1"></i>
                             <span class="text-sm font-medium text-gray-700">Nueva Venta</span>
-                        </button>
-                        <button class="p-3 bg-green-50 hover:bg-green-100 rounded-lg transition duration-200 flex items-center justify-center flex-col">
+                        </a>
+                        <a href="{{ route('inventario_index') }}" class="p-3 bg-purple-50 hover:bg-purple-100 rounded-lg transition duration-200 flex items-center justify-center flex-col">
                             <i class="fas fa-box text-green-500 text-lg mb-1"></i>
                             <span class="text-sm font-medium text-gray-700">Inventario</span>
-                        </button>
-                        <button class="p-3 bg-purple-50 hover:bg-purple-100 rounded-lg transition duration-200 flex items-center justify-center flex-col">
+                        </a>
+
+                        <a href="{{ route('reportes') }}" class="p-3 bg-purple-50 hover:bg-purple-100 rounded-lg transition duration-200 flex items-center justify-center flex-col">
+
                             <i class="fas fa-chart-bar text-purple-500 text-lg mb-1"></i>
                             <span class="text-sm font-medium text-gray-700">Reportes</span>
-                        </button>
-                        <button class="p-3 bg-orange-50 hover:bg-orange-100 rounded-lg transition duration-200 flex items-center justify-center flex-col">
+            
+                        </a>
+
+
+          
+                         <a href="{{ route('configuracion') }}" class="p-3 bg-purple-50 hover:bg-purple-100 rounded-lg transition duration-200 flex items-center justify-center flex-col">
                             <i class="fas fa-cog text-orange-500 text-lg mb-1"></i>
                             <span class="text-sm font-medium text-gray-700">Configuración</span>
-                        </button>
+                         </a>
                     </div>
                 </div>
             </div>

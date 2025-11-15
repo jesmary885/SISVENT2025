@@ -54,9 +54,10 @@ class PuntoVentaCreate extends Component
 
         $registros = Producto::where('nombre', 'LIKE', '%' . $this->search . '%')
           ->orwhere('cod_barra', 'LIKE', '%' . $this->search . '%')
-          ->where('estado','Habilitado')
+          ->where('estado','Activo')
           ->latest('id')
           ->get();
+
 
       }
       else{

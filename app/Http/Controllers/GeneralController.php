@@ -18,6 +18,13 @@ class GeneralController extends Controller
         return view('inventario.index');
     }
 
+
+    public function reportes(){
+
+        return view('reportes.index');
+    }
+
+
     public function ventas_index(){
 
         return view('ventas.index');

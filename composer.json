@@ -15,6 +15,7 @@
         "laravel/sanctum": "^2.14",
         "laravel/tinker": "^2.7",
         "livewire/livewire": "*",
+        "maatwebsite/excel": "*",
         "milon/barcode": "*",
         "php-flasher/flasher-notyf-laravel": "*",
         "spatie/laravel-permission": "*"

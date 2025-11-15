@@ -115,7 +115,7 @@
             <div class=" flex justify-between ">
 
 
-                <p>Editar registro</p>
+                <p>Editar registro de compra del producto {{$registro->producto->nombre}}</p>
                
                <button type="button" wire:click="close" wire:loading.attr="disabled"  class=" cursor-pointer  py-2.5 px-3 me-2 mb-2 text-sm font-bold text-white focus:outline-none bg-black rounded-full border border-gray-200 hover:bg-gray-100 hover:text-gray-200 focus:z-10 focus:ring-4 focus:ring-gray-100  ">
                     X

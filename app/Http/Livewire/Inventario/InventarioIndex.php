@@ -20,8 +20,11 @@ class InventarioIndex extends Component
     public function render()
     {
 
-        $registros = Producto::where('nombre', 'LIKE', '%' . $this->search . '%')
-                ->where('estado','Habilitado')
+        $registros = Producto::where('estado', 'Activo')
+                ->where(function($query) {
+                    $query->where('nombre', 'LIKE', '%' . $this->search . '%')
+                        ->orWhere('cod_barra', 'LIKE', '%' . $this->search . '%');
+                })
                 ->latest('id')
                 ->paginate(20);
 

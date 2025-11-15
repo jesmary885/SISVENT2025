@@ -21,5 +21,8 @@
         "lodash": "^4.17.19",
         "postcss": "^8.4.0",
         "tailwindcss": "^4.1.0"
+    },
+    "dependencies": {
+        "chart.js": "^4.5.1"
     }
 }

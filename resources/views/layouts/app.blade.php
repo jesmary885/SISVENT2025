@@ -16,6 +16,8 @@
 
           <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
+          {{-- <script src="//unpkg.com/alpinejs" defer></script> --}}
+
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
 
@@ -31,6 +33,8 @@
         <script src="https://cdn.jsdelivr.net/npm/simplycountdown.js@2.0.0/dist/simplyCountdown.min.js"></script>
 
         <link rel="stylesheet" href="https://cdn.tailgrids.com/tailgrids-fallback.css" />
+
+
 
     
         <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.15.1/css/pro.min.css" />
