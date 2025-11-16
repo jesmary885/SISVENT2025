@@ -91,7 +91,7 @@ class PuntoVentaCreate extends Component
 
       $precio_dolares = (Producto::find($product)->precio_venta) * $cant;
 
-      return $precio_dolares;
+      return number_format($precio_dolares, 2, '.', '');
     }
 
      public function subtotal_bol($product,$cant){
@@ -128,7 +128,8 @@ class PuntoVentaCreate extends Component
 
       }
 
-      return $total;
+      return number_format($total, 2, '.', '');
+
 
     }
 
