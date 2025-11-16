@@ -46,7 +46,7 @@ class ProductosExport implements FromCollection, WithHeadings, WithMapping, With
             $producto->categoria ?? 'N/A',
             $producto->precio_venta,
             $producto->stock_minimo,
-            $producto->exento,
+            $producto->exento ?? 'N/A',
             $producto->estado ?? 'Activo',
             $producto->marca->nombre ?? 'N/A',
             $producto->created_at->format('d/m/Y H:i'),

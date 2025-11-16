@@ -23,36 +23,35 @@ class PuntoVentaFinalizar extends Component
     ];
 
     protected $rules_bs = [
-      'montocdol' => 'required|numeric',
+      'montocbs' => 'required|numeric',
     ];
 
     protected $rules = [
        'metodo_pago' => 'required',
     ];
 
-    public function mount(){
-
+    public function mount()
+    {
         $this->user_id = auth()->user()->id;
 
-        $registros = CarroCompra::where('user_id',$this->user_id)
-            ->where('estado','abierta')
+        $registros = CarroCompra::where('user_id', $this->user_id)
+            ->where('estado', 'abierta')
             ->get();
 
-        
         $total = 0;
 
-        foreach($registros as $registro){
-
-            $precio = $registro->producto->precio_venta;
-
-            $total = $total + ( $precio * $registro->cantidad);
-
+        foreach ($registros as $registro) {
+            $precio = floatval($registro->producto->precio_venta);
+            $total = $total + ($precio * $registro->cantidad);
         }
 
-        $this->total_dol = $total;
-        $total_bss = $this->total_dol * Tasa::find(1)->tasa_actual;
-
-        $this->total_bs = number_format($total_bss,2, '.', '');
+        // Guardar como float para cálculos
+        $this->total_dol = floatval($total);
+        $total_bss = $this->total_dol * floatval(Tasa::find(1)->tasa_actual);
+        $this->total_bs = floatval(number_format($total_bss, 2, '.', ''));
+        
+        // Inicializar valores
+        $this->cambio = 0;
     }
 
     public function close(){
@@ -60,6 +59,18 @@ class PuntoVentaFinalizar extends Component
         $this->open = false;
 
         $this->reset('montocdol','montocbs');
+    }
+
+    public function updatedMetodoPago($value)
+    {
+        // Resetear valores cuando cambia el método de pago
+        $this->reset(['montocdol', 'montocbs', 'cambio', 'deuda', 'monto_cancelado']);
+        
+        if ($value === 'dol_efec') {
+            $this->deuda = $this->total_dol;
+        } elseif ($value === 'bs_efec') {
+            $this->deuda = $this->total_bs;
+        }
     }
 
 
@@ -71,28 +82,48 @@ class PuntoVentaFinalizar extends Component
         }
     }
 
-    public function updatedMontocdol($value){
-        if ($value) {
-
-            if($this->montocdol > $this->total_dol) $this->cambio = $this->montocdol - $this->total_dol;
-            else $this->cambio = 0;
-
-            if($this->montocdol < $this->total_dol) $this->deuda =  $this->total_dol - $this->montocdol;
-            else $this->deuda = 0;
-            
+    public function updatedMontocdol($value)
+    {
+        // Convertir a float y limpiar el valor
+        $monto = floatval($value) ?? 0;
+        
+        // Asegurarse de que total_dol sea float
+        $total = floatval($this->total_dol);
+        
+        // Calcular cambio y deuda
+        if ($monto >= $total) {
+            $this->cambio = $monto - $total;
+            $this->deuda = 0;
+        } else {
+            $this->cambio = 0;
+            $this->deuda = $total - $monto;
         }
+        
+        // Formatear para mostrar (opcional)
+        $this->cambio = number_format($this->cambio, 2, '.', '');
+        $this->deuda = number_format($this->deuda, 2, '.', '');
     }
 
-     public function updatedMontocbs($value){
-        if ($value) {
-
-            if($this->montocbs > $this->total_bs) $this->cambio = $this->montocbs - $this->total_bs;
-            else $this->cambio = 0;
-
-            if($this->montocbs < $this->total_bs) $this->deuda =  $this->total_bs - $this->montocbs;
-            else $this->deuda = 0;
-            
+    public function updatedMontocbs($value)
+    {
+        // Convertir a float y limpiar el valor
+        $monto = floatval($value) ?? 0;
+        
+        // Asegurarse de que total_bs sea float
+        $total = floatval($this->total_bs);
+        
+        // Calcular cambio y deuda
+        if ($monto >= $total) {
+            $this->cambio = $monto - $total;
+            $this->deuda = 0;
+        } else {
+            $this->cambio = 0;
+            $this->deuda = $total - $monto;
         }
+        
+        // Formatear para mostrar (opcional)
+        $this->cambio = number_format($this->cambio, 2, '.', '');
+        $this->deuda = number_format($this->deuda, 2, '.', '');
     }
 
     public function render()

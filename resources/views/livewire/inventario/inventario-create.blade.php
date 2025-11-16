@@ -321,6 +321,27 @@
                         </div>
                     </div>
 
+                    @if($tipo == 'editar')
+                        <div class="w-1/3 ml-2">
+                            <div>
+                                <label for="cantidad" class="block text-sm font-medium text-gray-700 mb-2">
+                                    Cantidad
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="cantidad"
+                                    wire:model.defer="cantidad"
+                                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white placeholder-gray-400"
+                                    placeholder="Ejemplo. 250"
+                                >
+                                @error('cantidad')
+                                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+
+                    @endif
+
 
                 </div>
 

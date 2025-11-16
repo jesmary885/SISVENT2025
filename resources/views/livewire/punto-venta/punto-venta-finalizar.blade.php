@@ -243,13 +243,15 @@
 
                                     <div class="flex">
 
-                                        <input 
-                                        type="number" 
-                                        id="montocbs"
-                                        wire:model="montocbs"
-                                        class="w-full px-4 mr-1 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white placeholder-gray-400"
-                                        placeholder="Monto recibido"
-                                        >
+                                            <input 
+                                                type="number" 
+                                                id="montocbs"
+                                                wire:model.live="montocbs"
+                                                step="0.01"
+                                                min="0"
+                                                class="w-full px-4 mr-1 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white placeholder-gray-400"
+                                                placeholder="Monto recibido"
+                                            >
 
                                         <p class="text-xl font-medium text-gray-700 ml-1 mt-2">Bs</p>
 
@@ -343,11 +345,13 @@
                                     <div class="flex">
 
                                         <input 
-                                        type="number" 
-                                        id="montocdol"
-                                        wire:model="montocdol"
-                                        class="w-full px-4 mr-1 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white placeholder-gray-400"
-                                        placeholder="Monto recibido"
+                                            type="number" 
+                                            id="montocdol"
+                                            wire:model.live="montocdol"
+                                            step="0.01"
+                                            min="0"
+                                            class="w-full px-4 mr-1 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white placeholder-gray-400"
+                                            placeholder="Monto recibido"
                                         >
 
                                         <p class="text-xl font-medium text-gray-700 ml-1 mt-2">$</p>

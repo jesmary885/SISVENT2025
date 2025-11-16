@@ -6,12 +6,16 @@ use App\Models\Compra;
 use App\Models\Producto;
 use App\Models\ProductoLote;
 use App\Models\ProductoVenta;
+use Livewire\WithPagination;
 use App\Models\Tasa;
 use App\Models\Venta;
 use Livewire\Component;
 
 class InventarioIndex extends Component
 {
+     use WithPagination;
+    
+    public $perPage = 10;
 
     public $search,$product_delete;
 
@@ -26,7 +30,7 @@ class InventarioIndex extends Component
                         ->orWhere('cod_barra', 'LIKE', '%' . $this->search . '%');
                 })
                 ->latest('id')
-                ->paginate(20);
+                ->paginate($this->perPage);
 
 
 

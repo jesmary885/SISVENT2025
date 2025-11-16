@@ -6,9 +6,14 @@ use App\Models\Producto;
 use App\Models\ProductoVenta;
 use App\Models\Venta;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class VentasIndex extends Component
 {
+
+     use WithPagination;
+    
+    public $perPage = 10;
 
     protected $listeners = ['render'];
 
@@ -33,7 +38,7 @@ class VentasIndex extends Component
     public function render()
     {
          $registros = Venta::latest('id')
-                ->paginate(20);
+            ->paginate($this->perPage);
 
         return view('livewire.ventas.ventas-index', compact('registros'));
     }

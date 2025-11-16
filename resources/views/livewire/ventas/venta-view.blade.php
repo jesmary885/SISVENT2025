@@ -45,7 +45,7 @@
 
 
 
-    <x-dialog-modal wire:model="open" maxWidth="xl">
+    <x-dialog-modal wire:model="open" maxWidth="3xl">
 
         <x-slot name="title">
             <div class=" flex justify-between ">

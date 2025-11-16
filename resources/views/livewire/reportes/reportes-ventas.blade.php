@@ -156,6 +156,23 @@
                 </div>
 
                 <div class="space-y-3">
+
+                    {{-- <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-gray-50 rounded-lg p-4 text-center">
+                        <div class="text-2xl font-bold text-gray-800">{{ $totalVentasPeriodo }}</div>
+                        <div class="text-sm text-gray-600">Total Ventas</div>
+                    </div>
+                     <div class="bg-blue-50 rounded-lg p-4 text-center">
+                        <div class="text-2xl font-bold text-blue-600">${{ number_format($promedioVenta, 2) }}</div>
+                        <div class="text-sm text-blue-600">Ticket Promedio</div>
+                    </div> 
+                </div> --}}
+
+                 <div class="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
+                        <span class="font-semibold text-gray-700">Total ventas</span>
+                        <span class="font-bold text-blue-600">{{ $totalVentasPeriodo }}</span>
+                    </div>
+
                     <div class="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
                         <span class="font-semibold text-gray-700">Ingresos por Ventas</span>
                         <span class="font-bold text-blue-600">${{ number_format($ingresosTotales, 2) }}</span>
@@ -178,18 +195,18 @@
                         <span class="font-bold text-orange-600">${{ number_format($gastosCompras, 2) }}</span>
                     </div>
                     
-                    <div class="border-t border-gray-300 pt-2">
+                    {{-- <div class="border-t border-gray-300 pt-2">
                         <div class="flex justify-between items-center p-3 bg-purple-50 rounded-lg">
                             <span class="font-semibold text-gray-700">= Flujo de Caja Neto</span>
                             <span class="font-bold text-purple-600">${{ number_format($gananciaNeta, 2) }}</span>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
 
         <!-- Métricas de Eficiencia -->
-        <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-200">
+        {{-- <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-200">
             <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
                 <i class="fas fa-tachometer-alt text-purple-500 mr-2"></i>
                 Métricas de Desempeño
@@ -230,11 +247,42 @@
                     </div>
                 </div>
             </div>
+        </div> --}}
+
+             <!-- Métodos de Pago -->
+        <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-200">
+            <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+                <i class="fas fa-credit-card text-purple-500 mr-2"></i>
+                Ventas por Método de Pago
+            </h3>
+            <div class="space-y-3">
+                @forelse($ventasPorMetodoPago as $metodo)
+                <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-purple-500 rounded-lg flex items-center justify-center mr-3">
+                            <i class="fas fa-money-bill text-white text-sm"></i>
+                        </div>
+                        <div>
+                            <div class="font-semibold text-gray-800 capitalize">{{ $metodo->metodo_pago }}</div>
+                            <div class="text-xs text-gray-500">{{ $metodo->cantidad }} transacciones</div>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <div class="font-bold text-purple-600">${{ number_format($metodo->total_dolares, 2) }}</div>
+                        <div class="text-xs text-gray-500">{{ number_format(($metodo->total_dolares / max($ingresosTotales, 1)) * 100, 1) }}%</div>
+                    </div>
+                </div>
+                @empty
+                <div class="text-center py-4 text-gray-500">
+                    <p>No hay datos de métodos de pago</p>
+                </div>
+                @endforelse
+            </div>
         </div>
     </div>
 
     <!-- INFORMACIÓN ADICIONAL -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    {{-- <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <!-- Producto Más Vendido -->
         <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-200">
             <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
@@ -263,7 +311,7 @@
                 <p>No hay datos de productos vendidos</p>
             </div>
             @endif
-        </div>
+        </div> 
 
         <!-- Métodos de Pago -->
         <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-200">
@@ -295,7 +343,7 @@
                 @endforelse
             </div>
         </div>
-    </div>
+    </div> --}}
 </div>
 
 <script>

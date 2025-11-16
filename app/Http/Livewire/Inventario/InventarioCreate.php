@@ -13,7 +13,7 @@ class InventarioCreate extends Component
 {
 
     protected $listeners = ['render'];
-    public $product_delete,$tipo,$registro,$open = false,$marcas,$nombre,$cod_barra,$estado = '1',$cantidad,$presentacion,$marca_id,$categoria,$precio_venta,$precio_compra,$stock_minimo,$vencimiento,$fecha_vencimiento;
+    public $product_delete,$tipo,$registro,$open = false,$marcas,$nombre,$cod_barra, $estado = '1',$cantidad,$presentacion,$marca_id,$categoria,$precio_venta,$precio_compra,$stock_minimo,$vencimiento,$fecha_vencimiento;
 
     protected $rules = [
       'nombre' => 'required|max:255|min:2',
@@ -25,6 +25,17 @@ class InventarioCreate extends Component
 
     ];
 
+
+     protected $rules_editar = [
+      'nombre' => 'required|max:255|min:2',
+      'marca_id' => 'required',
+      'presentacion' => 'required',
+      'precio_venta' => 'required',
+      'cantidad' => 'required',
+      // 'vencimiento' => 'required',
+      'stock_minimo' => 'required',
+
+    ];
     
     // protected $rule_fecha = [
     //   'fecha_vencimiento' => 'required',
@@ -49,12 +60,13 @@ class InventarioCreate extends Component
 
         if($this->tipo == 'editar'){
 
-          if($this->registro->estado == 'Habilitado') $this->estado = 1;
+          if($this->registro->estado == 'Activo') $this->estado = 1;
           else $this->estado = 0;
 
           $this->nombre = $this->registro->nombre;
           $this->marca_id = $this->registro->marca_id;
           $this->presentacion = $this->registro->presentacion;
+            $this->cantidad = $this->registro->cantidad;
           $this->precio_venta = $this->registro->precio_venta;
           // $this->vencimiento = $this->registro->vencimiento;
           $this->cod_barra = $this->registro->cod_barra;
@@ -65,8 +77,21 @@ class InventarioCreate extends Component
 
     public function save(){
 
-      $rules = $this->rules;
-      $this->validate($rules);
+       if($this->tipo == 'editar'){
+
+          $rules_editar = $this->rules_editar;
+          $this->validate($rules_editar);
+
+       }
+
+        else{
+
+          $rules = $this->rules;
+          $this->validate($rules);
+
+        }
+
+      
 
       // if($this->vencimiento == 'Si') {
       //    $rules = $this->rules;
@@ -115,6 +140,7 @@ class InventarioCreate extends Component
             'nombre' => $this->nombre,
             'estado' => $estado,
             'marca_id' => $this->marca_id,
+            'cantidad' => $this->cantidad,
             'presentacion' => $this->presentacion,
             'precio_venta' => $this->precio_venta,
             // 'vencimiento' => $this->vencimiento,
