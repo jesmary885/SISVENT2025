@@ -160,16 +160,16 @@ class ImportExportInventario extends Component
                     public function headings(): array
                     {
                         return [
-                            'nombre ★ REQUERIDO',
-                            'codigo_de_barras (opcional - formatear como texto)',
-                            'cantidad_en_stock ★ REQUERIDO',
-                            'presentacion (opcional)',
-                            'categoria (opcional)',
-                            'precio_de_venta ★ REQUERIDO',
-                            'stock_minimo (opcional)',
-                            'exento (opcional: Si/No)',
-                            'estado (opcional)',
-                            'marca ★ REQUERIDO'
+                            'nombre',
+                            'codigo_de_barras',
+                            'cantidad_en_stock',
+                            'presentacion',
+                            'categoria',
+                            'precio_de_venta',
+                            'stock_minimo',
+                            'exento',
+                            'estado',
+                            'marca'
                         ];
                     }
 
