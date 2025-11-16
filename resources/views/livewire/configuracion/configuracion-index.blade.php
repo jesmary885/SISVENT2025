@@ -43,6 +43,10 @@
                                 <option value="DNI">DNI</option>
                                 <option value="Otro">Otro</option>
                             </select>
+
+                               @error('tipo_documento')
+                                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                @enderror
                         </div>
 
                         <!-- Número de documento -->
@@ -51,6 +55,11 @@
                                 Número de documento
                             </label>
                             <input id="documento" wire:model.defer="documento" type="text" class="w-full bg-gray-50 border border-gray-300 text-gray-700 py-2 px-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200" placeholder="Número de documento">
+                        
+                              @error('documento')
+                                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                @enderror
+                        
                         </div>
 
                         <!-- Nombre de la empresa -->
@@ -59,6 +68,10 @@
                                 Nombre de la empresa
                             </label>
                             <input id="nombre" wire:model.defer="nombre" type="text" class="w-full bg-gray-50 border border-gray-300 text-gray-700 py-2 px-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200" placeholder="Nombre de la empresa">
+                          @error('nombre')
+                                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                @enderror
+                        
                         </div>
                     </div>
 
@@ -68,6 +81,10 @@
                             Dirección de la empresa
                         </label>
                         <input id="direccion" wire:model.defer="direccion" type="text" class="w-full bg-gray-50 border border-gray-300 text-gray-700 py-2 px-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200" placeholder="Dirección de la empresa">
+                      @error('direccion')
+                                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                @enderror
+                    
                     </div>
                 </div>
 
@@ -119,6 +136,10 @@
                                 Teléfono de contacto
                             </label>
                             <input id="telefono" wire:model.defer="telefono"  type="tel" class="w-full bg-gray-50 border border-gray-300 text-gray-700 py-2 px-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200" placeholder="Teléfono de contacto">
+                          @error('telefono')
+                                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                @enderror
+                        
                         </div>
 
                         <!-- Email -->
@@ -127,6 +148,10 @@
                                 Email de la empresa
                             </label>
                             <input id="email" type="email" wire:model.defer="email" class="w-full bg-gray-50 border border-gray-300 text-gray-700 py-2 px-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200" placeholder="Email de la empresa">
+                       
+                         @error('email')
+                                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                @enderror
                         </div>
                     </div>
                 </div>

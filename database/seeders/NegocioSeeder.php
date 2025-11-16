@@ -20,7 +20,8 @@ class NegocioSeeder extends Seeder
             'email' => 'prueba@prueba.com',
             'telefono' => '5555555555',
             'tipo_documento' => 'RIF',
-            'nro_documento' => 'J-1111111-1',
+            'direccion' => 'DIRECCION DE PRUEBA',
+            'nro_documento' => '111111111111',
             'logo' => 'logo/logo.png',
         ]);
     }
