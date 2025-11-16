@@ -152,7 +152,7 @@
                                     <span class="font-bold text-gray-900">Bs {{$this->precio_bolivares($registro->precio_venta)}}</span>
                                     <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-3 py-1 rounded-full border border-yellow-300">
                                
-                                        Bs {{ number_format($registro->precio_venta), 2) }}
+                                        $ {{ number_format($registro->precio_venta, 2) }}
                                     </span>
                                 </div>
                             </div>
