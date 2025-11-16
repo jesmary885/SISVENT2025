@@ -100,14 +100,17 @@ class PuntoVentaCreate extends Component
 
       $precio_bs = $precio_dolares * Tasa::find(1)->tasa_actual;
 
-      return $precio_bs;
+       return number_format($precio_bs, 2, '.', '');
+
+
     }
 
     public function precio_bolivares($product){
      
       $precio_bs = $product * Tasa::find(1)->tasa_actual;
 
-      return $precio_bs;
+
+       return number_format($precio_bs, 2, '.', '');
     }
 
     public function total_pagar_global(){
@@ -135,7 +138,8 @@ class PuntoVentaCreate extends Component
      
       $precio_bs = $this->total_pagar_global() * Tasa::find(1)->tasa_actual;
 
-      return $precio_bs;
+
+       return number_format($precio_bs, 2, '.', '');
     }
 
  

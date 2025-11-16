@@ -41,7 +41,7 @@ class InventarioIndex extends Component
 
         $precio_bs = $precio * Tasa::find(1)->tasa_actual;
 
-        return $precio_bs;
+        return number_format($precio_bs, 2, '.', '');
 
 
     }
