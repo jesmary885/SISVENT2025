@@ -12,6 +12,11 @@ class GeneralController extends Controller
         return view('home');
     }
 
+    public function cambiarCredenciales(){
+
+        return view('auth.cambiar-credenciales');
+    }
+
     
     public function inventario_index(){
 

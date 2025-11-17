@@ -35,9 +35,12 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('Administracion',[GeneralController::class,'administracion'])->name('administracion');
     Route::get('Configuracion',[GeneralController::class,'configuracion'])->name('configuracion');
     Route::get('Reportes',[GeneralController::class,'reportes'])->name('reportes');
+    Route::get('Cambiar-credenciales',[GeneralController::class,'cambiarCredenciales'])->name('perfil.credenciales');
 
     Route::get('/inventario/import-export', function () {
-    return view('inventario-import-export');
-})->name('inventario.import-export');
+        return view('inventario-import-export');
+    })->name('inventario.import-export');
+
+
 
 });
