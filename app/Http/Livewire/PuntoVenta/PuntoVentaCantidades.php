@@ -62,6 +62,8 @@ class PuntoVentaCantidades extends Component
 
         $this->reset('qty');
 
+        $this->emit('carritoActualizado'); // Agrega esta línea
+
         $this->emitTo('punto-venta.punto-venta-create','render');
     
     }

@@ -82,9 +82,9 @@
                             <div class="flex flex-col justify-center w-full text-center">
                                 <div class="text-sm sm:text-base md:text-xl text-gray-800 font-bold mb-1 sm:mb-2">TOTAL A PAGAR</div>
                                 <div class="bg-yellow-100 text-yellow-800 shadow-sm text-sm sm:text-base md:text-lg font-medium px-1 sm:px-2 py-1 rounded-sm border border-yellow-300">
-                                    <p class="font-bold text-xs sm:text-sm md:text-2xl">Bs {{$this->total_pagar_bs()}}</p>
+                                   <p class="font-bold text-xs sm:text-sm md:text-2xl">Bs {{ number_format($this->total_bs, 2, ',', '.') }}</p>
                                     <span class="bg-green-200 text-green-800 text-md md:text-xl font-medium px-1 sm:px-2 rounded-sm border border-green-400">
-                                        REF. {{$this->total_pagar_global()}}
+                                        REF. {{ number_format($this->total_global, 2, ',', '.') }}
                                     </span>
                                 </div>
                             </div>
@@ -128,20 +128,23 @@
         <hr class="border-gray-200 mb-6">
 
         <!-- Barra de Búsqueda -->
-        <div class="relative mb-2">
-            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <i class="fas fa-search text-gray-400"></i>
+           <div class="relative mb-2">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <i class="fas fa-search text-gray-400"></i>
+                </div>
+                <!-- Agregar debounce -->
+                <!-- Cerrar con ESC -->
+                <input 
+                    wire:model.debounce.300ms="search" 
+                    wire:keydown.escape="open = false"   
+                    type="text" 
+                    class="w-full pl-10 pr-4 py-4 bg-gray-100 border-0 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg transition-all duration-300 placeholder-gray-500 shadow-sm"
+                    placeholder="Buscar producto por nombre o código..."
+                />
             </div>
-  <input 
-    wire:model="search" 
-    type="text" 
-    class="w-full pl-10 pr-4 py-4 bg-gray-100 border-0 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg transition-all duration-300 placeholder-gray-500 shadow-sm"
-    placeholder="Buscar producto por nombre o código..."
-/>
-        </div>
 
         <!-- Lista de Productos -->
-        <div class="hidden" :class="{ 'hidden' : !$wire.open }" @click.away="$wire.open = false">
+        <div class="{{ $open ? '' : 'hidden' }}" x-show="$wire.open" @click.away="$wire.open = false">
             <div class="mt-2 bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl shadow-lg border border-amber-200">
                 <div class="p-4 max-h-96 overflow-y-auto">
                     @forelse ($registros as $registro)
@@ -149,10 +152,9 @@
                             <div class="flex-1 min-w-0">
                                 <h3 class="font-semibold text-gray-800 text-sm truncate group-hover:text-blue-600">{{$registro->nombre}}</h3>
                                 <div class="flex items-center gap-3 mt-2">
-                                    <span class="font-bold text-gray-900">Bs {{$this->precio_bolivares($registro->precio_venta)}}</span>
+                                    <span class="font-bold text-gray-900">Bs {{ number_format($this->precio_bolivares($registro->precio_venta), 2, ',', '.') }}</span>
                                     <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-3 py-1 rounded-full border border-yellow-300">
-                               
-                                        $ {{ number_format($registro->precio_venta, 2) }}
+                                        $ {{ number_format($registro->precio_venta, 2, ',', '.') }}
                                     </span>
                                 </div>
                             </div>
@@ -163,10 +165,12 @@
                             </div>
                         </div>
                     @empty
-                        <div class="text-center py-6 bg-white/50 rounded-xl">
-                            <i class="fas fa-search text-gray-400 text-2xl mb-2"></i>
-                            <p class="text-gray-600 font-semibold">No se encontraron productos</p>
-                        </div>
+                        @if($search) <!-- Solo mostrar vacío si hay búsqueda -->
+                            <div class="text-center py-6 bg-white/50 rounded-xl">
+                                <i class="fas fa-search text-gray-400 text-2xl mb-2"></i>
+                                <p class="text-gray-600 font-semibold">No se encontraron productos</p>
+                            </div>
+                        @endif
                     @endforelse
                 </div>
             </div>
@@ -214,9 +218,10 @@
                                 </td>
                                 <td class="px-4 py-3 text-center">
                                     <div class="flex flex-col items-center space-y-1">
-                                        <span class="font-bold text-gray-900">Bs {{$this->subtotal_bol($registro_c->producto_id,$registro_c->cantidad)}}</span>
+                                        <!-- En el carrito -->
+                                        <span class="font-bold text-gray-900">Bs {{ number_format($this->subtotal_bol($registro_c->producto_id,$registro_c->cantidad), 2, ',', '.') }}</span>
                                         <span class="bg-green-100 text-green-800 text-xs font-medium px-2 py-1 rounded-full border border-green-300">
-                                            REF. ${{$this->subtotal_dol($registro_c->producto_id,$registro_c->cantidad)}}
+                                            REF. ${{ number_format($this->subtotal_dol($registro_c->producto_id,$registro_c->cantidad), 2, ',', '.') }}
                                         </span>
                                     </div>
                                 </td>

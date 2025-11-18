@@ -66,7 +66,7 @@ class InventarioCreate extends Component
           $this->nombre = $this->registro->nombre;
           $this->marca_id = $this->registro->marca_id;
           $this->presentacion = $this->registro->presentacion;
-            $this->cantidad = $this->registro->cantidad;
+          $this->cantidad = $this->registro->cantidad;
           $this->precio_venta = $this->registro->precio_venta;
           // $this->vencimiento = $this->registro->vencimiento;
           $this->cod_barra = $this->registro->cod_barra;

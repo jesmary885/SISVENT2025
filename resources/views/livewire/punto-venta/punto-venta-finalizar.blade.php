@@ -93,20 +93,21 @@
     </style>
 
 
-    <button type="button" wire:click="$set('open',true)" type="button" wire:loading.attr="disabled" class=" cursor-pointer update-btn w-full p-4 text-white font-bold text-lg rounded-xl flex items-center justify-center">
+    <button 
+    type="button" 
+    wire:click="openModal" 
+    wire:loading.attr="disabled" 
+    class="cursor-pointer update-btn w-full p-4 text-white font-bold text-lg rounded-xl flex items-center justify-center">
     
-
-
-        <svg wire:loading.remove wire:target="finalizarCompra" class="w-4 sm:w-5 h-4 sm:h-5 transform group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-        </svg>
-                                
-        <span wire:loading.remove wire:target="finalizarCompra" class="group-hover:text-gray-800 transition-colors">
-            PROCESAR VENTA
-        </span>
-
-       
-
+    <svg wire:loading.remove class="w-4 sm:w-5 h-4 sm:h-5 transform group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+    </svg>
+    
+    <span wire:loading.remove class="group-hover:text-gray-800 transition-colors">
+        PROCESAR VENTA
+    </span>
+    
+    <span wire:loading>Procesando...</span>
     </button>
 
     <x-dialog-modal wire:model="open" maxWidth="xl">

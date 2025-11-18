@@ -121,12 +121,13 @@
                                 </span>
                         </td>
 
-                         <td class="px-6 py-4 text-center">
-                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-lg font-medium">
-                                    
-                                    <p class="font-semibold inline ">  Bs {{$this->subtotal_bol($registro)}}</p>
-                                    <span class="bg-green-200 text-green-800 text-xs font-medium px-2 rounded-sm dark:bg-gray-700 dark:text-green-400 border border-green-400">REF. {{$this->subtotal_dol($registro)}}</span>
+                        <td class="px-6 py-4 text-center">
+                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-lg font-medium">
+                                <p class="font-semibold inline">Bs {{ number_format($this->total_bolivares($registro), 2, ',', '.') }}</p>
+                                <span class="bg-green-200 text-green-800 text-xs font-medium px-2 rounded-sm border border-green-400">
+                                    REF. {{ number_format($this->total_dolares($registro), 2, ',', '.') }}
                                 </span>
+                            </span>
                         </td>
 
                          <td class="px-6 py-4 text-center">
