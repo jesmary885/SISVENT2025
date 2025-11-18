@@ -122,7 +122,7 @@
                             </div>
 
                             <x-dropdown-link href="{{ route('perfil.credenciales') }}">
-                                {{ __('Profile') }}
+                                Perfil
                             </x-dropdown-link>
 
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
@@ -139,7 +139,7 @@
 
                                 <x-dropdown-link href="{{ route('logout') }}"
                                          @click.prevent="$root.submit();">
-                                    {{ __('Log Out') }}
+                                    Salir
                                 </x-dropdown-link>
                             </form>
                         </x-slot>
@@ -185,7 +185,7 @@
             <div class="mt-3 space-y-1">
                 <!-- Account Management -->
                 <x-responsive-nav-link href="{{ route('perfil.credenciales') }}" :active="request()->routeIs('perfil.credenciales')">
-                    {{ __('Profile') }}
+                    Perfil
                 </x-responsive-nav-link>
 
                 @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
@@ -200,7 +200,7 @@
 
                     <x-responsive-nav-link href="{{ route('logout') }}"
                                    @click.prevent="$root.submit();">
-                        {{ __('Log Out') }}
+                       Salir
                     </x-responsive-nav-link>
                 </form>
 

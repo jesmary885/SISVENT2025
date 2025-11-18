@@ -221,7 +221,7 @@
     </div> --}}
 
     <!-- Producto Más Vendido -->
-    @if($datos['productoMasVendido'])
+    {{-- @if($datos['productoMasVendido'])
     <div class="seccion">
         <h2>Producto Más Vendido</h2>
         <table class="tabla">
@@ -237,10 +237,10 @@
             </tr>
         </table>
     </div>
-    @endif
+    @endif --}}
 
     <!-- Ventas por Método de Pago -->
-    @if(count($datos['ventasPorMetodoPago']) > 0)
+    {{-- @if(count($datos['ventasPorMetodoPago']) > 0)
     <div class="seccion">
         <h2>Ventas por Método de Pago</h2>
         <table class="tabla">
@@ -260,22 +260,22 @@
             @endforeach
         </table>
     </div>
-    @endif
+    @endif --}}
 
     <!-- Compras del Período -->
-    <div class="seccion">
+    {{-- <div class="seccion">
         <h2>Resumen de Compras</h2>
         <table class="tabla">
             <tr>
                 <td>Total Invertido en Compras</td>
                 <td class="text-right">${{ number_format($datos['gastosCompras'], 2) }}</td>
             </tr>
-            {{-- <tr>
+            <tr>
                 <td>Retorno sobre Inversión (ROI)</td>
                 <td class="text-right">{{ $datos['gastosCompras'] > 0 ? number_format(($datos['gananciaNeta'] / $datos['gastosCompras']) * 100, 1) : 0 }}%</td>
-            </tr> --}}
+            </tr>
         </table>
-    </div>
+    </div> --}}
 
     <div class="footer">
         Reporte generado automáticamente por el Sistema de Gestión<br>

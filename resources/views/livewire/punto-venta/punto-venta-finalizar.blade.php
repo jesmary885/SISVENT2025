@@ -219,7 +219,7 @@
 
                                 <div class="flex" >
 
-                                    <p tabindex="0" class="focus:outline-none text-xs text-gray-800 dark:text-gray-100 font font-semibold pb-3 mr-3">Recibido el monto exacto de la venta</p>
+                                    <p tabindex="0" class="focus:outline-none text-xs text-gray-800  font font-semibold pb-3 mr-3">Recibido el monto exacto de la venta</p>
                                     <div class="w-10 h-4 cursor-pointer rounded-full relative shadow-sm">
                                         <input aria-label="subscribe"
                                         type="checkbox"
@@ -320,7 +320,7 @@
 
                                 <div class="flex" >
 
-                                    <p tabindex="0" class="focus:outline-none text-xs text-gray-800 dark:text-gray-100 font font-semibold pb-3 mr-3">Recibido el monto exacto de la venta</p>
+                                    <p tabindex="0" class="focus:outline-none text-xs text-gray-800 font font-semibold pb-3 mr-3">Recibido el monto exacto de la venta</p>
                                     <div class="w-10 h-4 cursor-pointer rounded-full relative shadow-sm">
                                         <input aria-label="subscribe"
                                         type="checkbox"
