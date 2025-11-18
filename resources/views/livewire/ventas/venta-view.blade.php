@@ -165,7 +165,7 @@
                                 $diferencia_bs = abs($subtotal_bol - $venta->total_bolivares);
                             @endphp
                             
-                            @if($diferencia_dol > 0.01 || $diferencia_bs > 0.01)
+                            {{-- @if($diferencia_dol > 0.01 || $diferencia_bs > 0.01)
                                 <div class="mt-2 p-2 bg-yellow-100 border border-yellow-400 rounded">
                                     <p class="text-yellow-800 text-sm text-center">
                                         ⚠️ Diferencia detectada: 
@@ -173,7 +173,7 @@
                                         Bs {{ number_format($diferencia_bs, 2) }}
                                     </p>
                                 </div>
-                            @endif
+                            @endif --}}
                         </div>
                     </div>
                 </div>

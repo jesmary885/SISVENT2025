@@ -167,7 +167,7 @@
     </div>
 
     <!-- Resumen de Rentabilidad -->
-    <div class="seccion">
+    {{-- <div class="seccion">
         <h2>Análisis de Rentabilidad</h2>
         <div class="resumen-rentabilidad">
             <div class="resumen-item">
@@ -191,10 +191,10 @@
                 <span>${{ number_format($datos['gananciaNeta'], 2) }}</span>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <!-- Métricas de Desempeño -->
-    <div class="seccion">
+    {{-- <div class="seccion">
         <h2>Métricas de Desempeño</h2>
         <table class="tabla">
             <tr>
@@ -218,7 +218,7 @@
                 <td class="text-right">{{ $datos['gastosCompras'] > 0 ? number_format(($datos['gananciaNeta'] / $datos['gastosCompras']) * 100, 1) : 0 }}%</td>
             </tr>
         </table>
-    </div>
+    </div> --}}
 
     <!-- Producto Más Vendido -->
     @if($datos['productoMasVendido'])
@@ -270,10 +270,10 @@
                 <td>Total Invertido en Compras</td>
                 <td class="text-right">${{ number_format($datos['gastosCompras'], 2) }}</td>
             </tr>
-            <tr>
+            {{-- <tr>
                 <td>Retorno sobre Inversión (ROI)</td>
                 <td class="text-right">{{ $datos['gastosCompras'] > 0 ? number_format(($datos['gananciaNeta'] / $datos['gastosCompras']) * 100, 1) : 0 }}%</td>
-            </tr>
+            </tr> --}}
         </table>
     </div>
 

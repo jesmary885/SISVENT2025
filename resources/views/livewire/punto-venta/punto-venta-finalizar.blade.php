@@ -215,7 +215,7 @@
 
                     <div class="flex justify-start ">
 
-                        <div aria-label="action panel"  tabindex="0" class="focus:outline-none  py-4 px-4  dark:bg-gray-800 rounded-md">
+                        <div aria-label="action panel"  tabindex="0" class="focus:outline-none  py-4 px-4  rounded-md">
 
                                 <div class="flex" >
 
@@ -316,7 +316,7 @@
 
                     <div class="flex justify-start ">
 
-                        <div aria-label="action panel"  tabindex="0" class="focus:outline-none  py-4 px-4  dark:bg-gray-800 rounded-md">
+                        <div aria-label="action panel"  tabindex="0" class="focus:outline-none  py-4 px-4   rounded-md">
 
                                 <div class="flex" >
 
